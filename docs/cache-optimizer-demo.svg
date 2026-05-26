@@ -1,0 +1,61 @@
+<svg width="820" height="280" viewBox="0 0 820 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes staticGlow   { 0%,100%{fill:#161b22;stroke:#30363d} 40%,60%{fill:#1a2e1a;stroke:#3fb950} }
+      @keyframes dynamicWarn  { 0%,100%{fill:#161b22;stroke:#30363d} 40%,60%{fill:#2e1a0a;stroke:#ffa657} }
+      @keyframes cacheHit     { 0%,60%{opacity:0} 80%,100%{opacity:1} }
+      @keyframes hitBar       { from{width:0} to{width:320px} }
+      @keyframes missBar      { from{width:0} to{width:42px} }
+      @keyframes arrowPulse   { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+      .lbl { font:700 10px/1 'SF Mono','Fira Code',monospace; fill:#8b949e; letter-spacing:.05em; }
+      .cod { font:11px/1.5 'SF Mono','Fira Code',monospace; }
+      .val { font:700 13px/1 'SF Mono','Fira Code',monospace; }
+    </style>
+  </defs>
+
+  <rect width="820" height="280" fill="#0d1117" rx="10"/>
+  <text x="410" y="22" class="lbl" text-anchor="middle">CACHE OPTIMIZER — ISOLATE STATIC PREFIX → 74-84% CACHE HIT RATE</text>
+
+  <!-- BEFORE: naive (mixed static+dynamic) -->
+  <rect x="18" y="34" width="370" height="170" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
+  <text x="30" y="52" class="lbl" fill="#f85149">BEFORE: NAIVE SYSTEM PROMPT  (7% cache hits)</text>
+
+  <rect x="26" y="60" width="354" height="60" fill="#2e1a0a" rx="4" stroke="#ffa657" stroke-width="1" style="animation:dynamicWarn 3s infinite"/>
+  <text x="34" y="78" class="cod" fill="#ffa657">Current time: 2026-05-26T14:32:11Z  ← ⚠ BREAKS CACHE</text>
+  <text x="34" y="94" class="cod" fill="#ffa657">Request-ID: req_a8f2c1d9e3b7       ← ⚠ BREAKS CACHE</text>
+  <text x="34" y="110" class="cod" fill="#ffa657">Session: sess_f1a2b3c4d5e6f7g8     ← ⚠ BREAKS CACHE</text>
+
+  <rect x="26" y="126" width="354" height="68" fill="#161b22" rx="4" stroke="#30363d" stroke-width="1"/>
+  <text x="34" y="142" class="cod" fill="#8b949e">You are a helpful assistant. Always respond</text>
+  <text x="34" y="158" class="cod" fill="#8b949e">in markdown. Focus on code quality...</text>
+  <text x="34" y="174" class="cod" fill="#8b949e">[1,200 more tokens of static instructions]</text>
+
+  <!-- Arrow -->
+  <text x="398" y="124" font-size="22" fill="#3fb950" style="animation:arrowPulse 1.8s infinite">→</text>
+
+  <!-- AFTER: optimized -->
+  <rect x="432" y="34" width="370" height="170" fill="#161b22" rx="8" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="444" y="52" class="lbl" fill="#3fb950">AFTER: CACHE-OPTIMIZED  (84% cache hits)</text>
+
+  <rect x="440" y="60" width="354" height="68" fill="#1a2e1a" rx="4" stroke="#3fb950" stroke-width="1" style="animation:staticGlow 3s infinite">
+  </rect>
+  <text x="448" y="76" class="cod" fill="#3fb950">You are a helpful assistant. Always respond</text>
+  <text x="448" y="92" class="cod" fill="#3fb950">in markdown. Focus on code quality...</text>
+  <text x="448" y="108" class="cod" fill="#3fb950">[1,200 tokens — cache_control: ephemeral ✓]</text>
+
+  <rect x="440" y="134" width="354" height="60" fill="#2e1a0a" rx="4" stroke="#ffa657" stroke-width="1"/>
+  <text x="448" y="152" class="cod" fill="#ffa657">Current time: 2026-05-26T14:32:11Z</text>
+  <text x="448" y="168" class="cod" fill="#ffa657">Request-ID: req_a8f2c1d9e3b7</text>
+  <text x="448" y="184" class="cod" fill="#8b949e">[dynamic suffix — appended fresh each call]</text>
+
+  <!-- Cache hit rate bar -->
+  <rect x="18" y="218" width="784" height="48" fill="#161b22" rx="6"/>
+  <text x="30" y="234" class="lbl">CACHE HIT RATE</text>
+  <text x="30" y="254" class="lbl" fill="#f85149">BEFORE</text>
+  <rect x="90" y="244" width="42" height="14" fill="#f85149" rx="3" style="animation:missBar 1s .5s both;width:0"/>
+  <text x="138" y="255" class="lbl" fill="#f85149">7%</text>
+  <text x="30" y="274" class="lbl" fill="#3fb950">AFTER </text>
+  <rect x="90" y="264" width="320" height="14" fill="#3fb950" rx="3" style="animation:hitBar 1.2s .8s both;width:0"/>
+  <text x="416" y="275" class="lbl" fill="#3fb950">84% — 41–80% API cost reduction</text>
+</svg>

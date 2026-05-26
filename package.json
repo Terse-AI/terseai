@@ -1,15 +1,26 @@
 {
-  "name": "terse",
+  "name": "@terse-ai/sdk",
   "version": "0.1.0",
   "description": "Systematic token optimization framework for LLM applications",
   "type": "module",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "benchmark": "node benchmark/run.js",
     "test": "node --test tests/"
   },
-  "keywords": ["llm", "token", "optimization", "ai", "framework", "anthropic", "openai"],
+  "keywords": ["llm", "token", "optimization", "ai", "framework", "anthropic", "openai", "agent", "mcp", "context"],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Terse-AI/terseai.git"
+  },
+  "homepage": "https://terseai.org",
+  "bugs": {
+    "url": "https://github.com/Terse-AI/terseai/issues"
+  },
   "peerDependencies": {
     "@anthropic-ai/sdk": ">=0.24.0",
     "openai": ">=4.0.0"

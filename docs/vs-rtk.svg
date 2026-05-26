@@ -1,0 +1,111 @@
+<svg width="820" height="380" viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes checkIn  { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+      @keyframes crossIn  { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+      @keyframes rowIn    { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+      @keyframes winnerGlow { 0%,100%{box-shadow:none} 50%{filter:drop-shadow(0 0 8px #3fb950)} }
+      @keyframes titleIn  { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+
+      .head  { font:700 11px/1 'SF Mono','Fira Code',monospace; fill:#8b949e; letter-spacing:.06em; }
+      .row   { font:12px/1 'SF Mono','Fira Code',monospace; fill:#e6edf3; }
+      .sub   { font:10px/1 'SF Mono','Fira Code',monospace; fill:#8b949e; }
+      .yes   { fill:#3fb950; }
+      .no    { fill:#f85149; }
+      .win   { fill:#3fb950; font-weight:700; }
+      .rtk   { fill:#ffa657; }
+    </style>
+  </defs>
+
+  <rect width="820" height="380" fill="#0d1117" rx="10"/>
+
+  <!-- Title -->
+  <text x="410" y="26" class="head" text-anchor="middle" fill="#e6edf3" style="animation:titleIn .5s both">TERSE  vs  RTK (Rust Token Killer) — COVERAGE COMPARISON</text>
+
+  <!-- Column headers -->
+  <text x="30"  y="52" class="head">OPTIMIZATION LAYER</text>
+  <text x="500" y="52" class="head" fill="#ffa657">RTK</text>
+  <text x="600" y="52" class="head" fill="#3fb950">TERSE  ←  WINNER</text>
+
+  <!-- Divider -->
+  <line x1="20" y1="58" x2="800" y2="58" stroke="#30363d" stroke-width="1"/>
+  <line x1="480" y1="38" x2="480" y2="375" stroke="#30363d" stroke-width="1"/>
+  <line x1="580" y1="38" x2="580" y2="375" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Rows: y starting at 78, spacing 26px -->
+  <!-- Row 1 -->
+  <text x="30" y="78" class="row" style="animation:rowIn .4s .1s both">Shell command output (git, cargo, ls…)</text>
+  <text x="30" y="90" class="sub">filter ls/git/test output before LLM sees it</text>
+  <text x="510" y="83" class="rtk" text-anchor="middle" style="animation:checkIn .3s .6s both">✓ native</text>
+  <text x="620" y="83" class="yes" text-anchor="middle" style="animation:checkIn .3s .9s both">✓ SDK layer</text>
+
+  <line x1="20" y1="97" x2="800" y2="97" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 2 -->
+  <text x="30" y="113" class="row" style="animation:rowIn .4s .2s both">Prompt / message compression</text>
+  <text x="30" y="125" class="sub">filler, hedging, politeness removed from user messages</text>
+  <text x="510" y="118" class="no"  text-anchor="middle" style="animation:crossIn .3s .7s both">✗</text>
+  <text x="620" y="118" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.0s both">✓ 22–50%</text>
+
+  <line x1="20" y1="131" x2="800" y2="131" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 3 -->
+  <text x="30" y="147" class="row" style="animation:rowIn .4s .3s both">Tool result compression (API/MCP responses)</text>
+  <text x="30" y="159" class="sub">compress JSON tool call results before re-injection</text>
+  <text x="510" y="152" class="no"  text-anchor="middle" style="animation:crossIn .3s .8s both">✗</text>
+  <text x="620" y="152" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.1s both">✓ 26–54%</text>
+
+  <line x1="20" y1="165" x2="800" y2="165" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 4 -->
+  <text x="30" y="181" class="row" style="animation:rowIn .4s .35s both">MCP tool schema compression</text>
+  <text x="30" y="193" class="sub">40–50% of context is schema bloat before any work begins</text>
+  <text x="510" y="186" class="no"  text-anchor="middle" style="animation:crossIn .3s .85s both">✗</text>
+  <text x="620" y="186" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.15s both">✓ 42–69%</text>
+
+  <line x1="20" y1="199" x2="800" y2="199" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 5 -->
+  <text x="30" y="215" class="row" style="animation:rowIn .4s .4s both">Conversation memory management</text>
+  <text x="30" y="227" class="sub">sliding window, summarization, semantic retrieval</text>
+  <text x="510" y="220" class="no"  text-anchor="middle" style="animation:crossIn .3s .9s both">✗</text>
+  <text x="620" y="220" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.2s both">✓ 75–85%</text>
+
+  <line x1="20" y1="233" x2="800" y2="233" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 6 -->
+  <text x="30" y="249" class="row" style="animation:rowIn .4s .45s both">Semantic deduplication</text>
+  <text x="30" y="261" class="sub">skip injecting context the LLM already has</text>
+  <text x="510" y="254" class="no"  text-anchor="middle" style="animation:crossIn .3s .95s both">✗</text>
+  <text x="620" y="254" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.25s both">✓ 30–40%</text>
+
+  <line x1="20" y1="267" x2="800" y2="267" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 7 -->
+  <text x="30" y="283" class="row" style="animation:rowIn .4s .5s both">Prompt cache optimization</text>
+  <text x="30" y="295" class="sub">isolate static prefix → 41–80% API cost reduction</text>
+  <text x="510" y="288" class="no"  text-anchor="middle" style="animation:crossIn .3s 1.0s both">✗</text>
+  <text x="620" y="288" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.3s both">✓ 41–80%</text>
+
+  <line x1="20" y1="301" x2="800" y2="301" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 8 -->
+  <text x="30" y="317" class="row" style="animation:rowIn .4s .55s both">Multi-model cost routing</text>
+  <text x="30" y="329" class="sub">route simple tasks to haiku, hard tasks to opus</text>
+  <text x="510" y="322" class="no"  text-anchor="middle" style="animation:crossIn .3s 1.05s both">✗</text>
+  <text x="620" y="322" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.35s both">✓ 40–80%</text>
+
+  <line x1="20" y1="335" x2="800" y2="335" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 9 -->
+  <text x="30" y="351" class="row" style="animation:rowIn .4s .6s both">Works without CLI hook / shell access</text>
+  <text x="30" y="363" class="sub">SDK-level — works in any Node.js/browser app, serverless, CI</text>
+  <text x="510" y="356" class="no"  text-anchor="middle" style="animation:crossIn .3s 1.1s both">✗</text>
+  <text x="620" y="356" class="yes" text-anchor="middle" style="animation:checkIn .3s 1.4s both">✓ any env</text>
+
+  <!-- Bottom total bar -->
+  <rect x="580" y="335" width="220" height="38" fill="#1a2e1a" rx="0 0 8 0"/>
+  <text x="690" y="357" font-family="'SF Mono','Fira Code',monospace" font-size="11" font-weight="700" fill="#3fb950" text-anchor="middle">8 / 9 layers optimized</text>
+  <rect x="480" y="335" width="100" height="38" fill="#2a1a0a" rx="0"/>
+  <text x="530" y="357" font-family="'SF Mono','Fira Code',monospace" font-size="11" font-weight="700" fill="#ffa657" text-anchor="middle">1 / 9 layers</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg width="820" height="260" viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes block1In  { from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)} }
+      @keyframes block2In  { from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)} }
+      @keyframes block3Dup { 0%,50%{opacity:0} 60%{opacity:1;fill:#f85149} 80%,100%{opacity:.7;fill:#f85149} }
+      @keyframes block4In  { from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)} }
+      @keyframes dupBadge  { 0%,55%{opacity:0;transform:scale(0)} 70%,100%{opacity:1;transform:scale(1)} }
+      @keyframes simScore  { 0%,55%{opacity:0} 70%,100%{opacity:1} }
+      @keyframes savedPop  { 0%,80%{opacity:0;transform:scale(.8)} 95%,100%{opacity:1;transform:scale(1)} }
+
+      .lbl { font:700 10px/1 'SF Mono','Fira Code',monospace; fill:#8b949e; letter-spacing:.05em; }
+      .bod { font:11px/1.5 'SF Mono','Fira Code',monospace; }
+      .sim { font:700 12px/1 'SF Mono','Fira Code',monospace; }
+    </style>
+  </defs>
+
+  <rect width="820" height="260" fill="#0d1117" rx="10"/>
+  <text x="410" y="22" class="lbl" text-anchor="middle">SEMANTIC DEDUPLICATOR — SKIP CONTEXT ALREADY IN THE LLM'S WINDOW</text>
+
+  <!-- Incoming chunks column -->
+  <text x="20" y="44" class="lbl">INCOMING CONTEXT CHUNKS</text>
+
+  <!-- Chunk 1 — new -->
+  <rect x="18" y="52" width="340" height="44" fill="#161b22" rx="6" stroke="#3fb950" stroke-width="1" style="animation:block1In .4s .2s both;opacity:0"/>
+  <text x="28" y="68" class="bod" fill="#3fb950">React hooks let you use state in functional</text>
+  <text x="28" y="82" class="bod" fill="#3fb950">components via useState and useEffect.</text>
+
+  <!-- Chunk 2 — new -->
+  <rect x="18" y="102" width="340" height="44" fill="#161b22" rx="6" stroke="#3fb950" stroke-width="1" style="animation:block2In .4s .6s both;opacity:0"/>
+  <text x="28" y="118" class="bod" fill="#3fb950">PostgreSQL supports JSONB columns for</text>
+  <text x="28" y="132" class="bod" fill="#3fb950">semi-structured data with GIN indexing.</text>
+
+  <!-- Chunk 3 — duplicate -->
+  <rect x="18" y="152" width="340" height="44" fill="#2e1a1a" rx="6" stroke="#f85149" stroke-width="1.5" style="animation:block3Dup 4s .9s infinite;opacity:0"/>
+  <text x="28" y="168" class="bod" fill="#f85149">You can use React hooks like useState to</text>
+  <text x="28" y="182" class="bod" fill="#f85149">manage state inside functional components.</text>
+
+  <!-- Chunk 4 — new -->
+  <rect x="18" y="202" width="340" height="44" fill="#161b22" rx="6" stroke="#3fb950" stroke-width="1" style="animation:block4In .4s 1.8s both;opacity:0"/>
+  <text x="28" y="218" class="bod" fill="#3fb950">TypeScript generics provide type-safe</text>
+  <text x="28" y="232" class="bod" fill="#3fb950">reusability across functions and classes.</text>
+
+  <!-- Center similarity scores -->
+  <text x="380" y="68"  class="sim" fill="#3fb950" style="animation:simScore .4s .5s both;opacity:0">→ 0.12 ✓ inject</text>
+  <text x="380" y="118" class="sim" fill="#3fb950" style="animation:simScore .4s .9s both;opacity:0">→ 0.08 ✓ inject</text>
+  <text x="380" y="170" class="sim" fill="#f85149" style="animation:simScore .4s 1.3s both;opacity:0">→ 0.94 ✗ SKIP</text>
+  <text x="380" y="218" class="sim" fill="#3fb950" style="animation:simScore .4s 1.9s both;opacity:0">→ 0.11 ✓ inject</text>
+
+  <!-- Duplicate badge -->
+  <rect x="278" y="155" width="72" height="18" fill="#f85149" rx="9" style="animation:dupBadge 4s .9s infinite;opacity:0"/>
+  <text x="314" y="167" font-family="'SF Mono','Fira Code',monospace" font-size="9" font-weight="700" fill="#0d1117" text-anchor="middle" style="animation:dupBadge 4s .9s infinite;opacity:0">DUPLICATE</text>
+
+  <!-- Context window output -->
+  <rect x="570" y="52" width="232" height="194" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
+  <text x="582" y="70" class="lbl">INJECTED CONTEXT</text>
+  <text x="582" y="86"  class="bod" fill="#3fb950">✓ React hooks (useState,</text>
+  <text x="582" y="100" class="bod" fill="#3fb950">  useEffect) for state.</text>
+  <text x="582" y="116" class="bod" fill="#3fb950">✓ PostgreSQL JSONB +</text>
+  <text x="582" y="130" class="bod" fill="#3fb950">  GIN indexing.</text>
+  <text x="582" y="154" class="bod" fill="#f85149">✗ [React hooks — already</text>
+  <text x="582" y="168" class="bod" fill="#f85149">   seen, sim=0.94, skipped]</text>
+  <text x="582" y="188" class="bod" fill="#3fb950">✓ TypeScript generics for</text>
+  <text x="582" y="202" class="bod" fill="#3fb950">  type-safe reusability.</text>
+
+  <!-- Savings callout -->
+  <g style="animation:savedPop 4s 2s both;opacity:0">
+    <rect x="570" y="254" width="232" height="0" fill="transparent"/>
+    <rect x="570" y="234" width="232" height="22" fill="#1a2e1a" rx="0 0 8 8"/>
+    <text x="686" y="249" font-family="'SF Mono','Fira Code',monospace" font-size="10" font-weight="700" fill="#3fb950" text-anchor="middle">1 chunk blocked · 30–40% avg saved</text>
+  </g>
+</svg>

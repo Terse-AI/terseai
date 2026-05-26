@@ -1,0 +1,53 @@
+<svg width="820" height="260" viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes fadeOut2 { 0%,30%{opacity:1;fill:#f85149} 80%{opacity:0} 100%{opacity:0} }
+      @keyframes keepGreen{ 0%,30%{fill:#e6edf3} 50%,100%{fill:#3fb950} }
+      @keyframes slideResult{ from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
+      @keyframes budgetBar { from{width:0} to{width:240px} }
+      @keyframes counterAnim{ 0%{opacity:0} 40%,100%{opacity:1} }
+
+      .label { font:700 10px/1 'SF Mono','Fira Code',monospace; fill:#8b949e; letter-spacing:.05em; }
+      .code  { font:11px/1.6 'SF Mono','Fira Code',monospace; }
+    </style>
+  </defs>
+
+  <rect width="820" height="260" fill="#0d1117" rx="10"/>
+  <text x="410" y="22" class="label" text-anchor="middle">TOOL RESULT COMPRESSOR — COMPRESS API/MCP RESPONSES BEFORE RE-INJECTION</text>
+
+  <!-- Raw JSON result panel -->
+  <rect x="18" y="34" width="360" height="192" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
+  <text x="30" y="52" class="label">RAW TOOL RESULT  (1,840 tokens)</text>
+
+  <text x="30" y="74"  class="code" style="animation:fadeOut2 4s .3s forwards">{"users": [</text>
+  <text x="30" y="90"  class="code" style="animation:fadeOut2 4s .4s forwards">  {"id": 1, "name": "Alice", "email": "alice@co.com",</text>
+  <text x="30" y="106" class="code" style="animation:keepGreen 4s .5s forwards">   "role": "admin", "status": "active"},</text>
+  <text x="30" y="122" class="code" style="animation:fadeOut2 4s .6s forwards">  {"id": 2, "name": "Bob", "email": "bob@co.com",</text>
+  <text x="30" y="138" class="code" style="animation:keepGreen 4s .7s forwards">   "role": "user", "status": "active"},</text>
+  <text x="30" y="154" class="code" style="animation:fadeOut2 4s .8s forwards">  {"id": 3, "name": "Carol","email": "carol@co.com",</text>
+  <text x="30" y="170" class="code" style="animation:keepGreen 4s .9s forwards">   "role": "user", "status": "inactive"},</text>
+  <text x="30" y="186" class="code" style="animation:fadeOut2 4s 1.0s forwards">  ...+ 847 more rows of verbose JSON...</text>
+  <text x="30" y="202" class="code" style="animation:fadeOut2 4s 1.1s forwards">]}</text>
+
+  <!-- Arrow -->
+  <text x="392" y="136" font-size="24" fill="#3fb950" style="animation:slideResult .3s 3.5s both;opacity:0">→</text>
+  <text x="384" y="154" class="label" fill="#3fb950" style="animation:slideResult .3s 3.5s both;opacity:0">TOON</text>
+  <text x="381" y="166" class="label" fill="#3fb950" style="animation:slideResult .3s 3.5s both;opacity:0">encode</text>
+
+  <!-- Compressed TOON result panel -->
+  <rect x="440" y="34" width="362" height="192" fill="#161b22" rx="8" stroke="#3fb950" stroke-width="1.5" style="animation:slideResult .5s 3.8s both;opacity:0"/>
+  <text x="452" y="52" class="label" fill="#3fb950" style="animation:slideResult .3s 3.9s both;opacity:0">TOON-ENCODED  (320 tokens · 83% reduction)</text>
+
+  <g style="animation:slideResult .4s 4.1s both;opacity:0">
+    <text x="452" y="80"  class="code" fill="#3fb950">FIELDS: id | name | role | status</text>
+    <text x="452" y="100" class="code" fill="#3fb950">1 | Alice | admin | active</text>
+    <text x="452" y="118" class="code" fill="#3fb950">2 | Bob   | user  | active</text>
+    <text x="452" y="136" class="code" fill="#3fb950">3 | Carol | user  | inactive</text>
+    <text x="452" y="156" class="code" fill="#8b949e">…[850 rows, budget: 512 tok]</text>
+    <text x="452" y="180" class="code" fill="#8b949e">…[truncated to token budget]</text>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="18" y="238" width="784" height="16" fill="#0d1117"/>
+  <text x="30" y="252" class="label">field names declared once · email/metadata fields filtered · hard budget cap · lossless for structured data</text>
+</svg>

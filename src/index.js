@@ -44,6 +44,14 @@ export {
   retryMiddleware,
 } from './middleware/pipeline.js';
 
+// ── Agent-level optimization ──────────────────────────────────────────────
+export { ToolResultCompressor }                              from './agent/tool-result-compressor.js';
+export { SemanticDeduplicator }                              from './agent/semantic-deduplicator.js';
+export { CacheOptimizer }                                    from './agent/cache-optimizer.js';
+export { compressMCPSchemas, toTOON, fromTOON,
+         buildSearchFirstCatalog }                           from './agent/mcp-optimizer.js';
+export { ObservationMasker }                                 from './agent/observation-masker.js';
+
 // ── Providers (lazy — require peer deps) ─────────────────────────────────
 export { AnthropicProvider } from './providers/anthropic.js';
 export { OpenAIProvider } from './providers/openai.js';

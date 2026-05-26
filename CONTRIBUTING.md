@@ -5,7 +5,7 @@ Thanks for your interest. Here's how to get started.
 ## Setup
 
 ```bash
-git clone https://github.com/lucaszengool/terseai.git
+git clone https://github.com/Terse-AI/terseai.git
 cd terseai
 node benchmark/run.js   # verify everything works — no install needed
 ```
@@ -35,4 +35,4 @@ examples/        - runnable usage examples
 
 ## Issues
 
-Report bugs and ideas at [github.com/lucaszengool/terseai/issues](https://github.com/lucaszengool/terseai/issues).
+Report bugs and ideas at [github.com/Terse-AI/terseai/issues](https://github.com/Terse-AI/terseai/issues).

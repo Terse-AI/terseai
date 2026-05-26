@@ -16,17 +16,18 @@ Cut API costs 40–70% without changing how you write prompts.
 
 <br>
 
-[![npm version](https://img.shields.io/npm/v/terse?color=%23000&style=flat-square&label=npm)](https://npmjs.com/package/terse)
-[![license](https://img.shields.io/github/license/lucaszengool/terseai?color=%23000&style=flat-square)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/%40terse-ai%2Fsdk?color=%23000&style=flat-square&label=npm)](https://npmjs.com/package/@terse-ai/sdk)
+[![license](https://img.shields.io/github/license/Terse-AI/terseai?color=%23000&style=flat-square)](LICENSE)
 [![zero deps](https://img.shields.io/badge/dependencies-0-black?style=flat-square)](package.json)
-[![benchmark](https://img.shields.io/badge/savings-40–70%25-black?style=flat-square)](#benchmarks)
-[![GitHub stars](https://img.shields.io/github/stars/lucaszengool/terseai?style=social)](https://github.com/lucaszengool/terseai)
+[![benchmark](https://img.shields.io/badge/savings-40–80%25-black?style=flat-square)](#benchmarks)
+[![GitHub stars](https://img.shields.io/github/stars/Terse-AI/terseai?style=social)](https://github.com/Terse-AI/terseai)
 
 <br>
 
 [Website](https://terseai.org) &nbsp;•&nbsp;
 [Documentation](#documentation) &nbsp;•&nbsp;
 [Benchmarks](#benchmarks) &nbsp;•&nbsp;
+[vs RTK](#why-not-just-use-rtk) &nbsp;•&nbsp;
 [Examples](./examples) &nbsp;•&nbsp;
 [Contributing](#contributing)
 
@@ -36,18 +37,33 @@ Cut API costs 40–70% without changing how you write prompts.
 
 ---
 
+## Why not just use RTK?
+
+[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk) is a great CLI tool — it compresses shell command *outputs* before they reach your LLM. But it only covers **1 of the 9 layers** where tokens are wasted.
+
+<div align="center">
+  <img src="./docs/vs-rtk.svg" alt="Terse vs RTK — full coverage comparison" width="820"/>
+</div>
+
+> [!NOTE]
+> RTK requires a shell hook and only intercepts `Bash` tool calls. It cannot touch your prompts, your memory, your tool schemas, your MCP servers, your cache strategy, or your model routing. Terse operates at the **SDK level** — it works inside your app, in serverless functions, in CI, anywhere Node.js runs.
+
+**Terse and RTK are complementary.** Use both for maximum savings: RTK handles shell output, Terse handles everything else.
+
+---
+
 > [!TIP]
 > Run `node benchmark/run.js` immediately after cloning — no install needed. See your exact savings in 5 seconds.
 
 ## Quick start
 
 ```bash
-npm install terse
+npm install @terse-ai/sdk
 npm install @anthropic-ai/sdk   # or: npm install openai
 ```
 
 ```javascript
-import { TerseContext } from 'terse'
+import { TerseContext } from '@terse-ai/sdk'
 
 const ctx = new TerseContext({
   model: 'claude-sonnet-4-6',
@@ -163,7 +179,7 @@ Latest results on included fixtures:
 The main entry point. Composes all modules into a single optimized LLM client.
 
 ```javascript
-import { TerseContext } from 'terse'
+import { TerseContext } from '@terse-ai/sdk'
 
 const ctx = new TerseContext(options)
 ```
@@ -212,7 +228,7 @@ ctx.pipe(middlewareFn)
 **Full example**
 
 ```javascript
-import { TerseContext } from 'terse'
+import { TerseContext } from '@terse-ai/sdk'
 
 const ctx = new TerseContext({
   model: 'claude-sonnet-4-6',
@@ -241,7 +257,7 @@ console.log(ctx.stats())
 Removes semantic waste from natural language: filler words, hedging, politeness, verbose phrases. All compression modes protect code blocks, URLs, JSON, and quoted strings.
 
 ```javascript
-import { LinguisticCompressor } from 'terse'
+import { LinguisticCompressor } from '@terse-ai/sdk'
 
 const comp = new LinguisticCompressor({ mode: 'balanced' })
 const { text, ratio } = comp.compress(inputText)
@@ -290,7 +306,7 @@ comp.compress(`
 **Standalone usage (no API key needed)**
 
 ```javascript
-import { LinguisticCompressor } from 'terse'
+import { LinguisticCompressor } from '@terse-ai/sdk'
 
 const lines = fs.readFileSync('prompts.txt', 'utf8').split('\n')
 const comp = new LinguisticCompressor({ mode: 'aggressive' })
@@ -409,7 +425,7 @@ const { text, ratio } = verbatimCompact(code)
 Sliding window context manager. Keeps the most recent N tokens of conversation history, automatically evicting old messages when the budget is exceeded.
 
 ```javascript
-import { WorkingMemory } from 'terse'
+import { WorkingMemory } from '@terse-ai/sdk'
 
 const memory = new WorkingMemory({ maxTokens: 4000, strategy: 'smart' })
 ```
@@ -439,7 +455,7 @@ memory.reset()                                 // clear the window
 **Example**
 
 ```javascript
-import { WorkingMemory } from 'terse'
+import { WorkingMemory } from '@terse-ai/sdk'
 
 const memory = new WorkingMemory({ maxTokens: 2000, strategy: 'smart' })
 
@@ -540,7 +556,7 @@ const messages = [
 In-memory vector store using TF-IDF similarity. Store knowledge chunks and retrieve only what's relevant to the current query — inject context just-in-time instead of flooding the full context window.
 
 ```javascript
-import { SemanticMemory } from 'terse'
+import { SemanticMemory } from '@terse-ai/sdk'
 
 const store = new SemanticMemory()
 ```
@@ -571,7 +587,7 @@ store.reset()                   // clear all chunks
 **Example**
 
 ```javascript
-import { SemanticMemory } from 'terse'
+import { SemanticMemory } from '@terse-ai/sdk'
 
 const store = new SemanticMemory()
 
@@ -607,7 +623,7 @@ const messages = [
 Routes each LLM call to the cheapest model capable of handling it. Classifies task complexity without a pre-flight LLM call — using fast heuristics on the input messages.
 
 ```javascript
-import { ModelRouter } from 'terse'
+import { ModelRouter } from '@terse-ai/sdk'
 
 const router = new ModelRouter(options)
 ```
@@ -652,7 +668,7 @@ router.savings()
 **Example**
 
 ```javascript
-import { ModelRouter } from 'terse'
+import { ModelRouter } from '@terse-ai/sdk'
 
 const router = new ModelRouter()
 
@@ -678,7 +694,7 @@ console.log(router.savings())
 Compresses OpenAI/Anthropic-compatible tool schemas. Strips filler, hedging, and verbose phrasing from descriptions — achieving ~42% reduction without changing the tool's function or parameter structure.
 
 ```javascript
-import { optimizeTools } from 'terse'
+import { optimizeTools } from '@terse-ai/sdk'
 
 const { tools, stats } = optimizeTools(originalTools, options)
 ```
@@ -707,7 +723,7 @@ const { tools, stats } = optimizeTools(originalTools, options)
 **Example**
 
 ```javascript
-import { optimizeTools } from 'terse'
+import { optimizeTools } from '@terse-ai/sdk'
 
 const tools = [
   {
@@ -788,7 +804,7 @@ budget.on('overflow', ({ overage }) => {
 Express-style middleware composition for LLM calls. Use it to build reusable, testable processing chains.
 
 ```javascript
-import { Pipeline } from 'terse'
+import { Pipeline } from '@terse-ai/sdk'
 
 const pipeline = new Pipeline()
 ```
@@ -824,7 +840,7 @@ pipeline.use(budgetMiddleware({ maxTokens: 4000 }))
 
 ```javascript
 import { Pipeline, loggingMiddleware } from 'terse'
-import { LinguisticCompressor } from 'terse'
+import { LinguisticCompressor } from '@terse-ai/sdk'
 
 const comp = new LinguisticCompressor({ mode: 'balanced' })
 
@@ -855,7 +871,7 @@ await pipeline.run({ messages, model: 'claude-sonnet-4-6' })
 The simplest setup. Drop-in replacement for direct API calls.
 
 ```javascript
-import { TerseContext } from 'terse'
+import { TerseContext } from '@terse-ai/sdk'
 
 const ctx = new TerseContext({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -875,7 +891,7 @@ console.log(result.content)
 For multi-turn agents that need to stay within token limits over many turns.
 
 ```javascript
-import { TerseContext } from 'terse'
+import { TerseContext } from '@terse-ai/sdk'
 
 const agent = new TerseContext({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -947,7 +963,7 @@ async function ragQuery(userQuestion) {
 Route based on task complexity. Spend money on hard tasks, save on easy ones.
 
 ```javascript
-import { ModelRouter } from 'terse'
+import { ModelRouter } from '@terse-ai/sdk'
 import Anthropic from '@anthropic-ai/sdk'
 
 const router = new ModelRouter()
@@ -975,7 +991,7 @@ async function smartChat(messages) {
 Compress tool schemas before each call to save 42–69% on schema overhead.
 
 ```javascript
-import { optimizeTools } from 'terse'
+import { optimizeTools } from '@terse-ai/sdk'
 import Anthropic from '@anthropic-ai/sdk'
 
 const client = new Anthropic()
@@ -1012,6 +1028,127 @@ const ctx = new TerseContext({
 // All layers active — typical combined savings: 50–70%
 const result = await ctx.chat(messages, { tools })
 console.log(ctx.stats())
+```
+
+---
+
+## Agent-Level Modules
+
+### ToolResultCompressor
+
+<div align="center">
+  <img src="./docs/tool-result-demo.svg" alt="Tool result compressor — TOON encoding reduces JSON 83%" width="820"/>
+</div>
+
+Compress tool/function call results before they're re-injected into context. Applies TOON encoding for tabular JSON (30–83% reduction), linguistic compression for text, verbatim compaction for code, and hard token-budget caps per tool type.
+
+```javascript
+import { ToolResultCompressor } from '@terse-ai/sdk'
+
+const trc = new ToolResultCompressor({
+  budgets: { search: 512, read_file: 2048, database: 768 },
+  maskOld: true,    // mask results older than 3 turns
+  maskAfter: 3,
+})
+
+// Compress before injecting into context
+const { content, tokensBefore, tokensAfter } = trc.compress('database_query', rawJsonResult)
+
+// After each agent turn, mask stale results
+const { messages: clean } = trc.maskOldResults(messages)
+
+trc.stats()
+// → { calls: 12, tokensBefore: 18400, tokensAfter: 4200, reductionPercent: 77 }
+```
+
+---
+
+### CacheOptimizer
+
+<div align="center">
+  <img src="./docs/cache-optimizer-demo.svg" alt="Cache optimizer — isolate static prefix for 84% cache hit rate" width="820"/>
+</div>
+
+Maximize Anthropic/OpenAI prompt cache hit rates. Detects dynamic content (timestamps, request IDs) that breaks the cache, isolates the static prefix, and adds `cache_control` markers automatically. Moves cache hit rate from **7% → 74–84%** — saving 41–80% on API costs.
+
+```javascript
+import { CacheOptimizer } from '@terse-ai/sdk'
+
+const optimizer = new CacheOptimizer({ provider: 'anthropic' })
+
+// Audit your system prompt for cache-breaking patterns
+const { issues } = optimizer.audit(systemPrompt)
+// issues: [{ match: '2026-05-26T14:32', fix: 'Move to dynamic suffix' }]
+
+// Build a cache-optimized request
+const { system, messages, cacheReport } = optimizer.buildAnthropicRequest(systemPrompt, messages)
+// cacheReport: { cacheableTokens: 1240, cacheable: true, estimatedCostReduction: '41-80%' }
+```
+
+---
+
+### SemanticDeduplicator
+
+<div align="center">
+  <img src="./docs/semantic-dedup-demo.svg" alt="Semantic deduplicator — blocks chunks the LLM already has" width="820"/>
+</div>
+
+Before injecting any context chunk (RAG results, tool outputs, documents), check if the LLM already has equivalent information. Blocks semantically similar content above a configurable threshold — eliminating 30–40% of redundant context with zero information loss.
+
+```javascript
+import { SemanticDeduplicator } from '@terse-ai/sdk'
+
+const dedup = new SemanticDeduplicator({ threshold: 0.88 })
+
+// Register system prompt so it's not re-injected
+dedup.register(systemPrompt)
+
+// Filter retrieved chunks — skip ones already known
+const { kept, blocked, tokensSaved } = dedup.filter(ragChunks)
+// blocked: ['React hooks let you use state...'] (already in system prompt)
+
+dedup.stats()
+// → { checked: 24, blocked: 8, tokensSaved: 2100, dedupRate: 33 }
+```
+
+---
+
+### MCPOptimizer
+
+Compress MCP tool schemas (40–50% of context before any work begins) and encode tabular results as TOON for 30–83% savings.
+
+```javascript
+import { compressMCPSchemas, toTOON, buildSearchFirstCatalog } from '@terse-ai/sdk'
+
+// Compress 10 tool schemas: 3,645 → 2,102 tokens (-42%)
+const { tools, stats } = compressMCPSchemas(mcpTools)
+
+// For 400+ tool catalogs: inject 3 meta-tools instead of full schemas
+// 400k tokens → 6k tokens (-98.5%)
+const { metaTools, handleMetaToolCall } = buildSearchFirstCatalog(allTools)
+
+// Encode tabular API response as TOON
+const { toon, reductionPercent } = toTOON(databaseQueryResult)
+// reductionPercent: 83
+```
+
+---
+
+### ObservationMasker
+
+Mask stale tool results after their information is extracted. Based on research showing environment observations are **~84% of agent context** and simple masking halves cost with **zero accuracy loss** — outperforming LLM summarization.
+
+```javascript
+import { ObservationMasker } from '@terse-ai/sdk'
+
+const masker = new ObservationMasker({ keepLast: 3 })
+
+// Keep 3 most recent observations verbatim, mask the rest
+const { messages: clean, stats } = masker.mask(messages)
+// stats: { observationsMasked: 14, tokensSaved: 8200, reductionPercent: 51 }
+
+// Or mask automatically when context pressure exceeds 75%
+const { messages: safe } = masker.maskIfPressured(messages, tokenBudget)
 ```
 
 ---
