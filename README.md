@@ -33,22 +33,13 @@ Cut API costs 40–70% without changing how you write prompts.
 
 <br>
 
+<img src="./docs/demo.gif" alt="Terse in action — verbose prompt compressed −38%, live agent session monitoring, 12,962 tokens saved" width="820"/>
+
+<br>
+
 </div>
 
----
-
-## Why not just use RTK?
-
-[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk) is a great CLI tool — it compresses shell command *outputs* before they reach your LLM. But it only covers **1 of the 9 layers** where tokens are wasted.
-
-<div align="center">
-  <img src="./docs/vs-rtk.svg" alt="Terse vs RTK — full coverage comparison" width="820"/>
-</div>
-
-> [!NOTE]
-> RTK requires a shell hook and only intercepts `Bash` tool calls. It cannot touch your prompts, your memory, your tool schemas, your MCP servers, your cache strategy, or your model routing. Terse operates at the **SDK level** — it works inside your app, in serverless functions, in CI, anywhere Node.js runs.
-
-**Terse and RTK are complementary.** Use both for maximum savings: RTK handles shell output, Terse handles everything else.
+> ⭐ **If Terse saves you money, [star the repo](https://github.com/Terse-AI/terseai)** — it helps other developers find it.
 
 ---
 
@@ -92,6 +83,21 @@ That's it. No prompt rewrites. No pipeline changes. Terse intercepts, compresses
   <img src="./docs/compression-demo.svg" alt="Terse compression demo — filler words removed in real time" width="820"/>
 </div>
 <br>
+
+---
+
+## Why not just use RTK?
+
+[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk) is a great CLI tool — it compresses shell command *outputs* before they reach your LLM. But it only covers **1 of the 9 layers** where tokens are wasted.
+
+<div align="center">
+  <img src="./docs/vs-rtk.svg" alt="Terse vs RTK — full coverage comparison" width="820"/>
+</div>
+
+> [!NOTE]
+> RTK requires a shell hook and only intercepts `Bash` tool calls. It cannot touch your prompts, your memory, your tool schemas, your MCP servers, your cache strategy, or your model routing. Terse operates at the **SDK level** — it works inside your app, in serverless functions, in CI, anywhere Node.js runs.
+
+**Terse and RTK are complementary.** Use both for maximum savings: RTK handles shell output, Terse handles everything else.
 
 ---
 
@@ -1216,7 +1222,7 @@ Every module is usable standalone. `TerseContext` composes them into a single cl
 Issues and PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ```bash
-git clone https://github.com/lucaszengool/terseai.git
+git clone https://github.com/Terse-AI/terseai.git
 cd terseai
 node benchmark/run.js   # verify everything works
 ```
