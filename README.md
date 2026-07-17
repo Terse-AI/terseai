@@ -33,7 +33,9 @@ Cut API costs 40–70% without changing how you write prompts.
 
 <br>
 
-<img src="./docs/demo.gif" alt="Terse in action — verbose prompt compressed −38%, live agent session monitoring, 12,962 tokens saved" width="820"/>
+<video src="https://github.com/Terse-AI/terseai/raw/main/docs/demo.mp4" autoplay loop muted playsinline width="820" poster="./docs/demo.gif"></video>
+
+<sub><em>Full product tour — prompt compression, live agent monitoring, cache reuse, Doctor health check. <a href="https://terseai.org">See it live →</a></em></sub>
 
 <br>
 
