@@ -117,14 +117,6 @@ Grounded in real research — [LLMLingua](https://www.terseai.org/llmlingua), No
 
 ---
 
-## ⭐ Star history
-
-<a href="https://star-history.com/#Terse-AI/terseai&Date">
-  <img src="https://api.star-history.com/svg?repos=Terse-AI/terseai&type=Date" width="620" alt="Star history" />
-</a>
-
----
-
 ## Learn more
 
 **Guides:** [What is token optimization](https://www.terseai.org/what-is-token-optimization) · [Reduce AI API costs](https://www.terseai.org/reduce-ai-api-costs) · [Claude Code pricing 2026](https://www.terseai.org/claude-code-pricing) · [AI token pricing comparison](https://www.terseai.org/ai-token-pricing-comparison) · [Blog](https://www.terseai.org/blog)
