@@ -2,6 +2,10 @@
 
 <a href="https://www.terseai.org"><img src="docs/banner.png" alt="Terse — The AI Agent Butler: live-monitor AI coding agents, stop runaway spend, compress prompts 40–70%" width="900" /></a>
 
+<br>
+
+<a href="https://www.terseai.org"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=700&size=22&duration=2500&pause=700&color=C6D82C&center=true&vCenter=true&width=680&height=45&lines=Compress+every+prompt+40-70%25;Stop+runaway+agent+spend;Monitor+8+AI+coding+agents+live;Manage+MCP+servers+%E2%80%94+on-device" alt="Compress every prompt · Stop runaway spend · Monitor 8 agents · Manage MCP" /></a>
+
 # Terse — The AI Agent Butler
 
 **Live-monitor every AI coding agent, stop runaway spend before the next API call, and compress every prompt 40–70%. On-device, for macOS &amp; Windows.**
@@ -48,6 +52,25 @@
 - **Diagnoses waste** with 25 one-click Doctor scans.
 
 Everything runs locally. Your prompts and sessions never leave your machine.
+
+### How it works
+
+```mermaid
+flowchart LR
+    U([You prompt<br/>an agent]) --> T{{Terse<br/>on-device}}
+    T -->|compress 40–70%| S([Smaller prompt])
+    T -->|monitor| M([Live tokens · cost<br/>cache · burn rate])
+    T -->|guard| B([Budget breaker<br/>pause / kill before<br/>the next API call])
+    S --> API([AI API])
+    M --> API
+    B -. stops runaway .-> API
+    API --> W([Lower bill ·<br/>same result])
+
+    classDef terse fill:#c6d82c,stroke:#c6d82c,color:#0a0a0a,font-weight:bold;
+    classDef node fill:#12140d,stroke:#3a3f26,color:#e8ece0;
+    class T terse;
+    class U,S,M,B,API,W node;
+```
 
 > **⭐ If Terse saves you tokens, drop a star — it's the fastest way to help other developers find it.**
 
