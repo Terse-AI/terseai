@@ -18,8 +18,6 @@
 [![VS Code installs](https://img.shields.io/visual-studio-marketplace/i/LucasZeng.terse-optimizer?style=for-the-badge&logo=visualstudiocode&logoColor=c6d82c&label=VS%20CODE&labelColor=0a0a0a&color=c6d82c)](https://marketplace.visualstudio.com/items?itemName=LucasZeng.terse-optimizer)
 
 ![Platform](https://img.shields.io/badge/macOS%20%7C%20Windows-0a0a0a?style=flat-square&logo=apple&logoColor=c6d82c)
-![Built with Rust](https://img.shields.io/badge/Rust-0a0a0a?style=flat-square&logo=rust&logoColor=c6d82c)
-![Built with Tauri](https://img.shields.io/badge/Tauri-0a0a0a?style=flat-square&logo=tauri&logoColor=c6d82c)
 ![On-device](https://img.shields.io/badge/100%25-on--device-c6d82c?style=flat-square&labelColor=0a0a0a)
 [![Last commit](https://img.shields.io/github/last-commit/Terse-AI/terseai?style=flat-square&labelColor=0a0a0a&color=c6d82c)](https://github.com/Terse-AI/terseai/commits)
 
