@@ -57,14 +57,14 @@ Everything runs locally. Your prompts and sessions never leave your machine.
 
 ```mermaid
 flowchart LR
-    U([You prompt<br/>an agent]) --> T{{Terse<br/>on-device}}
-    T -->|compress 40–70%| S([Smaller prompt])
-    T -->|monitor| M([Live tokens · cost<br/>cache · burn rate])
-    T -->|guard| B([Budget breaker<br/>pause / kill before<br/>the next API call])
+    U([You prompt an agent]) --> T{{Terse runs on-device}}
+    T -->|compress 40-70 percent| S([Smaller prompt])
+    T -->|monitor| M([Live tokens, cost, cache, burn])
+    T -->|guard| B([Budget breaker stops<br/>runaway agents])
     S --> API([AI API])
     M --> API
-    B -. stops runaway .-> API
-    API --> W([Lower bill ·<br/>same result])
+    B -.->|before next call| API
+    API --> W([Lower bill, same result])
 
     classDef terse fill:#c6d82c,stroke:#c6d82c,color:#0a0a0a,font-weight:bold;
     classDef node fill:#12140d,stroke:#3a3f26,color:#e8ece0;
