@@ -19,7 +19,7 @@
 
 <br>
 
-<img src="docs/demo.gif" width="760" alt="Terse — live agent monitoring, budget circuit breaker, and prompt optimization in action" />
+<img src="docs/demo.gif" width="820" alt="Terse dynamic island — live token savings, cache efficiency and context tracking floating over your desktop" />
 
 </div>
 
@@ -45,12 +45,20 @@ Everything runs locally. Your prompts and sessions never leave your machine.
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/optimizer.png" alt="Terse optimizer — paste a prompt, save tokens" /></td>
-<td width="50%"><img src="docs/screenshots/monitor.png" alt="Terse monitoring — real-time token, cost, cache and waste tracking for Claude Code" /></td>
+<td width="50%"><img src="docs/screenshots/dashboard.png" alt="Terse Overview dashboard — agent health, spend, burn rate and context" /></td>
+<td width="50%"><img src="docs/screenshots/stats.png" alt="Terse Stats — token receipts, cost and savings charts" /></td>
 </tr>
 <tr>
-<td align="center"><b>Save tokens. Save money.</b><br>Paste any prompt, optimize on-device.</td>
-<td align="center"><b>Monitor AI agent costs.</b><br>Real-time tracking for Claude Code &amp; more.</td>
+<td align="center"><b>Overview dashboard</b><br>Agent health, spend, burn rate &amp; context at a glance.</td>
+<td align="center"><b>Token receipts &amp; charts</b><br>See exactly where your tokens and dollars go.</td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/doctor.png" alt="Terse Doctor — 25 waste scans with one-click fixes" /></td>
+<td width="50%"><img src="docs/screenshots/team.png" alt="Terse Team — shared live agent sessions" /></td>
+</tr>
+<tr>
+<td align="center"><b>Doctor — 25 waste scans</b><br>Context overflow, duplicate MCP servers, one-click fixes.</td>
+<td align="center"><b>Team collaboration</b><br>Share live agent sessions and hand off work.</td>
 </tr>
 </table>
 
