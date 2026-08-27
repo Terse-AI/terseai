@@ -4,14 +4,36 @@
   "description": "Systematic token optimization framework for LLM applications",
   "type": "module",
   "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
+  "files": [
+    "src",
+    "examples",
+    "SDK.md",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "benchmark": "node benchmark/run.js",
     "test": "node --test tests/*.test.js"
   },
-  "keywords": ["llm", "token", "optimization", "ai", "framework", "anthropic", "openai", "agent", "mcp", "context"],
+  "keywords": [
+    "llm",
+    "token",
+    "optimization",
+    "ai",
+    "framework",
+    "anthropic",
+    "openai",
+    "agent",
+    "mcp",
+    "context"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -26,7 +48,11 @@
     "openai": ">=4.0.0"
   },
   "peerDependenciesMeta": {
-    "@anthropic-ai/sdk": { "optional": true },
-    "openai": { "optional": true }
+    "@anthropic-ai/sdk": {
+      "optional": true
+    },
+    "openai": {
+      "optional": true
+    }
   }
 }

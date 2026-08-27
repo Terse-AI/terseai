@@ -1,0 +1,10 @@
+# The published package is the SDK, not the product site's media.
+docs/
+benchmark/
+tests/
+.github/
+llms.txt
+CITATION.cff
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+SECURITY.md
