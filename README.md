@@ -1,14 +1,10 @@
 <div align="center">
 
-<a href="https://www.terseai.org"><img src="docs/banner.png" alt="Terse — The AI Agent Butler: live-monitor AI coding agents, stop runaway spend, compress prompts 40–70%" width="900" /></a>
+<a href="https://www.terseai.org"><img src="docs/hero.svg" alt="Terse — the on-device AI agent butler for macOS and Windows: compress every prompt 40–70%, live-monitor Claude Code, Cursor, Codex and Copilot, and stop runaway agent spend with a budget circuit breaker" width="900" /></a>
 
-<br>
+# Terse — the AI agent butler
 
-<a href="https://www.terseai.org"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=700&size=22&duration=2500&pause=700&color=C6D82C&center=true&vCenter=true&width=680&height=45&lines=Compress+every+prompt+40-70%25;Stop+runaway+agent+spend;Monitor+8+AI+coding+agents+live;Manage+MCP+servers+%E2%80%94+on-device" alt="Compress every prompt · Stop runaway spend · Monitor 8 agents · Manage MCP" /></a>
-
-# Terse — The AI Agent Butler
-
-**Live-monitor every AI coding agent, stop runaway spend before the next API call, and compress every prompt 40–70%. On-device, for macOS &amp; Windows.**
+**Cut AI coding agent costs 40–70%.** Live-monitor Claude Code, Cursor, Codex and Copilot, stop runaway agents *before the next API call*, and compress every prompt on-device. macOS &amp; Windows.
 
 <br>
 
@@ -17,11 +13,13 @@
 [![Chrome users](https://img.shields.io/chrome-web-store/users/lgnkdlpgfcogkmdhckmglleigmnnmmff?style=for-the-badge&logo=googlechrome&logoColor=c6d82c&label=CHROME&labelColor=0a0a0a&color=c6d82c)](https://chromewebstore.google.com/detail/lgnkdlpgfcogkmdhckmglleigmnnmmff)
 [![VS Code installs](https://img.shields.io/visual-studio-marketplace/i/LucasZeng.terse-optimizer?style=for-the-badge&logo=visualstudiocode&logoColor=c6d82c&label=VS%20CODE&labelColor=0a0a0a&color=c6d82c)](https://marketplace.visualstudio.com/items?itemName=LucasZeng.terse-optimizer)
 
+[![CI](https://img.shields.io/github/actions/workflow/status/Terse-AI/terseai/ci.yml?style=flat-square&labelColor=0a0a0a&color=c6d82c&label=tests)](https://github.com/Terse-AI/terseai/actions/workflows/ci.yml)
 ![Platform](https://img.shields.io/badge/macOS%20%7C%20Windows-0a0a0a?style=flat-square&logo=apple&logoColor=c6d82c)
 ![On-device](https://img.shields.io/badge/100%25-on--device-c6d82c?style=flat-square&labelColor=0a0a0a)
+[![License](https://img.shields.io/badge/SDK-MIT-c6d82c?style=flat-square&labelColor=0a0a0a)](LICENSE)
 [![Last commit](https://img.shields.io/github/last-commit/Terse-AI/terseai?style=flat-square&labelColor=0a0a0a&color=c6d82c)](https://github.com/Terse-AI/terseai/commits)
 
-[**🌐 terseai.org**](https://www.terseai.org) &nbsp;·&nbsp; [**⬇️ Download**](https://github.com/lucaszengool/Terse/releases/latest) &nbsp;·&nbsp; [**📖 Docs**](https://www.terseai.org/blog) &nbsp;·&nbsp; [**💸 Token calculator**](https://www.terseai.org/token-calculator)
+[**🌐 terseai.org**](https://www.terseai.org) &nbsp;·&nbsp; [**⬇️ Download**](https://github.com/lucaszengool/Terse/releases/latest) &nbsp;·&nbsp; [**📖 Docs**](https://www.terseai.org/blog) &nbsp;·&nbsp; [**💸 Token calculator**](https://www.terseai.org/token-calculator) &nbsp;·&nbsp; [**⚖️ vs ccusage &amp; others**](docs/COMPARISON.md)
 
 <br>
 
@@ -33,7 +31,7 @@
 
 <div align="center">
 
-**[What is Terse?](#what-is-terse)** · **[See it](#see-it)** · **[Capabilities](#capabilities)** · **[Agents](#supported-agents)** · **[Download](#download)** · **[Why](#why-it-matters)** · **[FAQ](#faq)** · **[SDK](#for-developers--the-terse-sdk)**
+**[What is it?](#what-is-terse)** · **[Quickstart](#quickstart)** · **[See it](#see-it)** · **[Capabilities](#capabilities)** · **[Agents](#which-ai-coding-agents-does-terse-monitor)** · **[vs alternatives](#how-is-terse-different-from-ccusage-and-usage-dashboards)** · **[FAQ](#faq)** · **[SDK](#the-terse-sdk-mit)**
 
 </div>
 
@@ -41,15 +39,17 @@
 
 ## What is Terse?
 
-**Terse is an on-device AI agent butler for macOS and Windows** (with Chrome and VS Code extensions). It watches the AI coding agents you already run — **Claude Code, Cursor, Codex, Copilot, Cline, Windsurf, OpenClaw, and Aider** — and handles the parts that quietly cost you money:
+**Terse** (the tool at [terseai.org](https://www.terseai.org)) **is an on-device AI agent butler for macOS and Windows**, with Chrome and VS Code extensions. It watches the AI coding agents you already run — **Claude Code, Cursor, OpenAI Codex, GitHub Copilot CLI, Cline, Windsurf, OpenClaw and Aider** — and handles the parts that quietly cost you money:
 
-- **Compresses every prompt 40–70%** before it hits the API, meaning preserved.
-- **Monitors each agent live** — tokens, cost, cache efficiency, burn rate, context fill.
-- **Stops runaway agents** with a budget circuit breaker that pauses or kills the process *before* the next API call.
-- **Manages your MCP servers** — discover, risk-score, and toggle without editing JSON.
-- **Diagnoses waste** with 25 one-click Doctor scans.
+- **Compresses every prompt 40–70%** before it hits the API, meaning preserved. 35+ techniques, sub-5ms, code always protected.
+- **Monitors each agent live** — tokens, cost, cache read/write efficiency, burn rate, context fill.
+- **Stops runaway agents** with a budget circuit breaker that pauses (`SIGSTOP`) or kills (`SIGTERM`) the process *before the next API call*.
+- **Manages your MCP servers** — discover, risk-score and toggle without editing JSON.
+- **Diagnoses waste** with ~25 one-click Terse Doctor scans.
 
 Everything runs locally. Your prompts and sessions never leave your machine.
+
+This repository also holds the **[Terse SDK](#the-terse-sdk-mit)** (MIT) — the token-optimization framework the app is built on — and the [benchmark harness](benchmark) behind the 40–70% figure.
 
 ### How it works
 
@@ -74,6 +74,42 @@ flowchart LR
 
 ---
 
+## Quickstart
+
+**The app** (monitoring, budget breaker, MCP manager, Doctor):
+
+```bash
+# macOS — download the signed .dmg
+open https://github.com/lucaszengool/Terse/releases/latest
+```
+
+Windows build and extensions: see [Download](#download).
+
+**The SDK** (build cost-aware LLM apps yourself — MIT licensed):
+
+```bash
+git clone https://github.com/Terse-AI/terseai.git
+cd terseai
+npm run benchmark      # reproduce the 40-70% numbers on your own machine
+npm test               # 9 behavioural tests over the public API
+```
+
+```js
+import { TerseContext } from './src/index.js';
+
+const ctx = new TerseContext({
+  model: 'claude-sonnet-4-6',
+  budget: 8000,              // hard token ceiling for the context window
+  compression: 'balanced',   // 'soft' | 'balanced' | 'aggressive'
+});
+
+const result = await ctx.chat([{ role: 'user', content: 'Explain recursion.' }]);
+```
+
+> The `@terse-ai/sdk` npm package isn't published yet — install from source by cloning this repo.
+
+---
+
 ## See it
 
 <table>
@@ -90,7 +126,7 @@ flowchart LR
 <td width="50%"><img src="docs/screenshots/team.png" alt="Terse Team — shared live agent sessions" /></td>
 </tr>
 <tr>
-<td align="center"><b>Doctor — 25 waste scans</b><br>Context overflow, duplicate MCP servers, one-click fixes.</td>
+<td align="center"><b>Doctor — ~25 waste scans</b><br>Context overflow, duplicate MCP servers, one-click fixes.</td>
 <td align="center"><b>Team collaboration</b><br>Share live agent sessions and hand off work.</td>
 </tr>
 </table>
@@ -105,18 +141,35 @@ flowchart LR
 | 📡 | **Monitor** | Live tokens, cost, cache efficiency, burn rate & context fill across 8 agents. | [For Claude Code →](https://www.terseai.org/for-claude-code) |
 | 🛑 | **Budget breaker** | Spend ceilings that pause or kill a runaway agent *before* its next API call. | [Budget circuit breaker →](https://www.terseai.org/agent-budget-circuit-breaker) |
 | 🔌 | **MCP manager** | Discover every MCP server, risk-score each, toggle without editing JSON. | [MCP manager →](https://www.terseai.org/mcp-manager) |
-| 🩺 | **Doctor** | 25 waste scans — cache thrash, duplicate calls, redundant reads, context burn. | [Reduce AI API costs →](https://www.terseai.org/reduce-ai-api-costs) |
+| 🩺 | **Doctor** | ~25 waste scans — cache thrash, duplicate calls, redundant reads, context burn. | [Reduce AI API costs →](https://www.terseai.org/reduce-ai-api-costs) |
 | 👥 | **Team** | Share live agent sessions and team analytics by developer, project, and tool. | [For teams →](https://www.terseai.org/teams) |
 
 ---
 
-## Supported agents
+## Which AI coding agents does Terse monitor?
 
-Auto-detected, no setup:
+Eight, auto-detected with no setup:
 
 **Claude Code** · **Cursor** · **OpenAI Codex** · **GitHub Copilot CLI** · **Cline** · **Windsurf** · **OpenClaw** · **Aider**
 
-Claude Code goes deepest: exact token counts, cache read/write efficiency, live JSONL streaming, and 30 days of historical backfill.
+Claude Code goes deepest: exact token counts, cache read/write efficiency, live JSONL streaming, and 30 days of historical backfill. The prompt optimizer works with any AI chat or agent, including ones not on this list.
+
+---
+
+## How is Terse different from ccusage and usage dashboards?
+
+Most tools in this space **report** what you spent. Terse is built to **change** it — compression before the call, and a circuit breaker that stops the process before the next one.
+
+| | **Terse** | ccusage | Claude-Code-Usage-Monitor | Provider dashboards |
+|---|---|---|---|---|
+| Reports past spend | ✅ | ✅ | ✅ | ✅ |
+| Live burn rate & context fill | ✅ | ⚠️ | ✅ | ❌ |
+| **Stops a runaway agent** | ✅ pause/kill | ❌ | ⚠️ warns | ❌ |
+| **Compresses prompts** | ✅ 40–70% | ❌ | ❌ | ❌ |
+| MCP manager + risk score | ✅ | ❌ | ❌ | ❌ |
+| Waste diagnosis | ✅ ~25 scans | ❌ | ❌ | ❌ |
+
+**→ [Full comparison, including when to use something else](docs/COMPARISON.md)** — ccusage is free, excellent and one command away if all you need is a number.
 
 ---
 
@@ -128,8 +181,9 @@ Claude Code goes deepest: exact token counts, cache read/write efficiency, live 
 | 🪟 **Windows** | [Terse for Windows](https://www.terseai.org/for-windows) |
 | 🧩 **Chrome** | [Chrome Web Store](https://chromewebstore.google.com/detail/lgnkdlpgfcogkmdhckmglleigmnnmmff) — compress prompts in any AI chat |
 | 💻 **VS Code** | [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=LucasZeng.terse-optimizer) — monitor agents + optimize in-editor |
+| 📦 **SDK** | `git clone https://github.com/Terse-AI/terseai.git` — MIT, Node 18+ |
 
-Free 30-day trial · Monthly $4.99/mo · [pricing](https://www.terseai.org/#pricing)
+App: free 30-day trial · $4.99/mo · [pricing](https://www.terseai.org/#pricing). SDK: free, MIT.
 
 ---
 
@@ -139,7 +193,7 @@ Free 30-day trial · Monthly $4.99/mo · [pricing](https://www.terseai.org/#pric
 |---|---|
 | Prompts sent full-length, every token billed | 40–70% smaller prompts, meaning intact |
 | No idea what an agent is spending until the bill | Live per-turn cost, burn rate, context fill |
-| A looping agent can burn $100s overnight | Hard budget ceiling pauses/kills before the next call |
+| A looping agent can burn $100s overnight | Hard ceiling pauses/kills before the next call |
 | MCP tool bloat silently taxes every call | Discover, risk-score & disable unused MCP servers |
 | Duplicate tool calls & re-reads go unnoticed | Doctor flags them with one-click fixes |
 | Your prompts leave your machine | 100% on-device — nothing leaves your Mac/PC |
@@ -166,14 +220,16 @@ Grounded in real research — [LLMLingua](https://www.terseai.org/llmlingua), No
 
 **Per-tool:** [Claude Code](https://www.terseai.org/for-claude-code) · [Cursor](https://www.terseai.org/for-cursor) · [ChatGPT](https://www.terseai.org/for-chatgpt) · [Copilot](https://www.terseai.org/for-github-copilot) · [Aider](https://www.terseai.org/for-aider) · [Cline](https://www.terseai.org/for-cline) · [Windsurf](https://www.terseai.org/for-windsurf) · [Codex](https://www.terseai.org/for-codex-cli)
 
+**In this repo:** [FAQ](docs/FAQ.md) · [Comparison](docs/COMPARISON.md) · [SDK reference](SDK.md) · [Examples](examples) · [Benchmark](benchmark) · [llms.txt](llms.txt)
+
 ---
 
 ## FAQ
 
 <details>
-<summary><b>How does Terse reduce AI agent costs?</b></summary>
+<summary><b>How do I reduce Claude Code costs?</b></summary>
 
-Terse compresses every prompt 40–70% on-device before it reaches the API, monitors each agent's live token/cost/cache usage, stops runaway agents with a budget circuit breaker, and flags waste (duplicate tool calls, redundant file reads, MCP tool bloat) with Terse Doctor. Together these cut the tokens you're billed for without changing how you work.
+Four levers, roughly in order of impact: send fewer tokens (Terse compresses every prompt 40–70% on-device); stop paying for cache misses (Doctor flags cache thrash — reordering a session so the stable prefix stays stable often beats compression); cut MCP tool bloat (unused servers re-send their catalogs on every call); and cap the downside with a hard ceiling, because most large bills are one unwatched loop. [More →](docs/FAQ.md)
 </details>
 
 <details>
@@ -183,9 +239,9 @@ Terse auto-detects and monitors 8 agents: Claude Code, Cursor, OpenAI Codex, Git
 </details>
 
 <details>
-<summary><b>What is the budget circuit breaker?</b></summary>
+<summary><b>What is a budget circuit breaker?</b></summary>
 
-A hard spending limit for your agents. Set a burn-rate, token, or dollar ceiling and Terse escalates from an alert to pausing (SIGSTOP) or killing (SIGTERM) the agent process **before the next API call** — so a looping agent can't burn hundreds of dollars overnight.
+A hard spending limit enforced at the process level rather than reported after the fact. Set a burn-rate, token, or dollar ceiling and Terse escalates from an alert to pausing (`SIGSTOP`) or killing (`SIGTERM`) the agent process **before the next API call** — so a looping agent can't burn hundreds of dollars overnight. Dashboards tell you the money is gone; a circuit breaker keeps it.
 </details>
 
 <details>
@@ -201,26 +257,42 @@ In Soft and Normal modes, meaning is fully preserved — code blocks, file paths
 </details>
 
 <details>
+<summary><b>How much does Terse actually save — and can I verify it?</b></summary>
+
+40–70% on verbose prompts, less on prompts that were already terse. You can reproduce the numbers yourself: `git clone https://github.com/Terse-AI/terseai.git && cd terseai && npm run benchmark`. It reports each module separately (text compression, working memory, tool optimization, model routing) rather than one headline number.
+</details>
+
+<details>
 <summary><b>Is Terse free? How much does it cost?</b></summary>
 
-There's a free 30-day trial. After that it's $4.99/month. The macOS and Windows apps, plus the Chrome and VS Code extensions, all share the same optimizer.
+The app has a free 30-day trial, then $4.99/month. The Chrome extension has a free tier. **The Terse SDK in this repository is MIT licensed and free**, benchmark harness included.
 </details>
 
 <details>
 <summary><b>What is an MCP manager and why do I need one?</b></summary>
 
-Model Context Protocol (MCP) servers add tools to your agent — but bloated or unused tool catalogs quietly add hundreds of tokens to every call, and some servers carry security risk (remote transport, embedded credentials, code execution). Terse discovers every MCP server across your Claude Code / Cursor / Windsurf configs, risk-scores each, and lets you enable or disable them without editing JSON.
+Model Context Protocol (MCP) servers add tools to your agent — but bloated or unused tool catalogs quietly add hundreds of tokens to every call, and some servers carry security risk (remote transport, embedded credentials, code execution, unpinned supply chain). Terse discovers every MCP server across your Claude Code / Cursor / Windsurf configs, risk-scores each, and lets you enable or disable them without editing JSON.
 </details>
+
+<details>
+<summary><b>Does Terse work on Linux?</b></summary>
+
+The desktop apps ship for macOS and Windows today. The Terse SDK in this repository is plain Node.js and runs anywhere Node 18+ runs, Linux included.
+</details>
+
+**→ [Full FAQ](docs/FAQ.md)**
 
 ---
 
-## For developers — the Terse SDK
+## The Terse SDK (MIT)
 
-This repo also contains the **Terse SDK**, a token-optimization framework for building cost-aware LLM apps (context compression, selective/verbatim compressors, working & episodic memory).
+This repo contains the **Terse SDK**, a token-optimization framework for building cost-aware LLM apps: context compression, selective/verbatim compressors, working & episodic memory, model routing, and MCP/tool-catalog optimization.
 
-📖 **[Full SDK reference → SDK.md](SDK.md)** · [`examples/`](examples) · [`benchmark/`](benchmark) · [Contributing](CONTRIBUTING.md)
+```js
+import { linguisticCompress, optimizeTools, ModelRouter } from './src/index.js';
+```
 
-> The `@terse-ai/sdk` npm package isn't published yet — install from source by cloning this repo.
+📖 **[Full SDK reference → SDK.md](SDK.md)** · [`examples/`](examples) · [`benchmark/`](benchmark) · [Contributing](CONTRIBUTING.md) · [License](LICENSE)
 
 ---
 

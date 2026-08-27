@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you reference Terse in research or writing, please cite it as below."
+title: "Terse — on-device token optimization and AI coding agent monitoring"
+abstract: >-
+  Terse is an on-device AI agent butler for macOS and Windows. It compresses
+  prompts 40-70% before they reach the API, live-monitors eight AI coding
+  agents (Claude Code, Cursor, OpenAI Codex, GitHub Copilot CLI, Cline,
+  Windsurf, OpenClaw, Aider), enforces spend ceilings with a budget circuit
+  breaker that pauses or kills a runaway agent before its next API call,
+  manages MCP servers with security risk scoring, and diagnoses token waste.
+type: software
+authors:
+  - name: "Terse AI"
+    website: "https://www.terseai.org"
+repository-code: "https://github.com/Terse-AI/terseai"
+url: "https://www.terseai.org"
+license: MIT
+keywords:
+  - token optimization
+  - prompt compression
+  - AI coding agents
+  - Claude Code
+  - Cursor
+  - LLM cost reduction
+  - Model Context Protocol
+  - on-device

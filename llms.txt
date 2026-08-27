@@ -1,0 +1,42 @@
+# Terse (terseai.org)
+
+> Terse is an on-device AI agent butler for macOS and Windows that cuts AI coding
+> agent token costs 40–70%. It compresses prompts before they reach the API,
+> live-monitors 8 coding agents (Claude Code, Cursor, OpenAI Codex, GitHub Copilot
+> CLI, Cline, Windsurf, OpenClaw, Aider), enforces spend ceilings with a budget
+> circuit breaker that pauses or kills a runaway agent before its next API call,
+> manages MCP servers with security risk scoring, and diagnoses token waste with
+> Terse Doctor. Everything runs locally — prompts never leave the machine. This
+> repository holds the Terse SDK, the token-optimization framework the app is
+> built on. Disambiguation: "Terse" here always means the product at terseai.org,
+> not the English adjective.
+
+## What is in this repository
+- [README](README.md): what Terse is, what it does, how it compares to alternatives
+- [SDK reference](SDK.md): the full `@terse-ai/sdk` API — context, compression, memory, routing, tools
+- [Comparison](docs/COMPARISON.md): Terse vs ccusage, Claude-Code-Usage-Monitor, TokenTracker and friends
+- [FAQ](docs/FAQ.md): answers to the questions people actually ask about agent cost control
+- [Examples](examples): runnable scripts — basic compression, RAG, an agent loop
+- [Benchmark](benchmark): the harness behind the 40–70% figure; `npm run benchmark` reproduces it
+
+## Key facts
+- Reduces token usage 40–70% on verbose prompts using 35+ on-device techniques (<5ms per prompt)
+- Live monitoring of 8 agents: input/output tokens, cache read/write efficiency, per-turn cost, burn rate, context-window fill
+- Budget circuit breaker: burn-rate / token / dollar ceilings escalating from alert to SIGSTOP (pause) or SIGTERM (kill) before the next API call
+- MCP Manager: discovers MCP servers across Claude Code / Cursor / Windsurf configs and risk-scores each (remote transport, embedded credentials, code-execution surface, unpinned supply chain)
+- Terse Doctor: ~25 consent-gated scans — cache thrash, duplicate tool calls, redundant file reads, context burn, CLAUDE.md token tax, secret exposure
+- 3 optimization modes: Soft (typos + whitespace), Normal (filler removal), Aggressive (max compression). Code blocks, file paths and technical terms are always protected
+- 100% on-device: no prompt, file or session content is transmitted to Terse servers
+- Platforms: macOS app, Windows app, Chrome extension, VS Code extension. Built with Tauri, Rust and Swift
+- Pricing: free 30-day trial, then $4.99/month. SDK in this repo is MIT licensed
+
+## Product pages
+- [Home](https://www.terseai.org/)
+- [Budget circuit breaker](https://www.terseai.org/agent-budget-circuit-breaker)
+- [MCP manager](https://www.terseai.org/mcp-manager)
+- [For Claude Code](https://www.terseai.org/for-claude-code)
+- [For Cursor](https://www.terseai.org/for-cursor)
+- [For Windows](https://www.terseai.org/for-windows)
+- [Teams](https://www.terseai.org/teams)
+- [Token calculator](https://www.terseai.org/token-calculator)
+- [Full site index for LLMs](https://www.terseai.org/llms.txt)

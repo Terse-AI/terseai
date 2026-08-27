@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask a question / share an idea
+    url: https://github.com/Terse-AI/terseai/discussions
+    about: Usage questions, feature ideas and show-and-tell belong in Discussions.
+  - name: 📖 Documentation & guides
+    url: https://www.terseai.org/blog
+    about: Token optimization guides, agent cost breakdowns and per-tool docs.
+  - name: 💸 Token calculator
+    url: https://www.terseai.org/token-calculator
+    about: Estimate what your current prompts cost, and what Terse would save.

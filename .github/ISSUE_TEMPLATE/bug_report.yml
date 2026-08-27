@@ -1,0 +1,41 @@
+name: 🐛 Bug report
+description: Something in the Terse app, SDK or extensions is broken.
+labels: [bug]
+body:
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did it happen?
+      options: [macOS app, Windows app, Chrome extension, VS Code extension, Terse SDK, Website]
+    validations: {required: true}
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "e.g. 1.3.3"
+    validations: {required: true}
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Which agent were you monitoring?
+      options: [Claude Code, Cursor, OpenAI Codex, GitHub Copilot CLI, Cline, Windsurf, OpenClaw, Aider, None / not applicable]
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you expected, and what you got instead.
+    validations: {required: true}
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open …
+        2. Click …
+        3. See …
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Redact anything sensitive — Terse never uploads prompts, and neither should an issue.
+      render: shell

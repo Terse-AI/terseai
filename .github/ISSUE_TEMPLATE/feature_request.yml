@@ -1,0 +1,20 @@
+name: ✨ Feature request
+description: Suggest an agent to support, a Doctor scan, or anything else.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The token/cost problem you're hitting, not the solution you have in mind.
+    validations: {required: true}
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like Terse to do?
+    validations: {required: true}
+  - type: input
+    id: agent
+    attributes:
+      label: Which agent or tool does this involve?
+      placeholder: "e.g. Gemini CLI, Zed, Continue.dev"

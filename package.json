@@ -9,7 +9,7 @@
   },
   "scripts": {
     "benchmark": "node benchmark/run.js",
-    "test": "node --test tests/"
+    "test": "node --test tests/*.test.js"
   },
   "keywords": ["llm", "token", "optimization", "ai", "framework", "anthropic", "openai", "agent", "mcp", "context"],
   "license": "MIT",
