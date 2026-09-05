@@ -4,7 +4,7 @@
 
 # Terse — the AI agent butler
 
-**Cut AI coding agent costs 40–70%.** Live-monitor Claude Code, Cursor, Codex and Copilot, stop runaway agents *before the next API call*, and compress every prompt on-device. macOS &amp; Windows.
+**Cut AI coding agent costs 40–70%.** Live-monitor Claude Code, Cursor, Codex and Copilot, stop runaway agents *before the next API call*, and compress every prompt on-device — then watch the whole thing happen on a **live 3D particle wallpaper** that spells out what your agents are doing. macOS &amp; Windows.
 
 <br>
 
@@ -31,7 +31,7 @@
 
 <div align="center">
 
-**[What is it?](#what-is-terse)** · **[Quickstart](#quickstart)** · **[See it](#see-it)** · **[Capabilities](#capabilities)** · **[Agents](#which-ai-coding-agents-does-terse-monitor)** · **[vs alternatives](#how-is-terse-different-from-ccusage-and-usage-dashboards)** · **[FAQ](#faq)** · **[SDK](#the-terse-sdk-mit)**
+**[What is it?](#what-is-terse)** · **[Quickstart](#quickstart)** · **[See it](#see-it)** · **[✨ Live wallpaper](#live-wallpaper)** · **[Capabilities](#capabilities)** · **[Agents](#which-ai-coding-agents-does-terse-monitor)** · **[vs alternatives](#how-is-terse-different-from-ccusage-and-usage-dashboards)** · **[FAQ](#faq)** · **[SDK](#the-terse-sdk-mit)**
 
 </div>
 
@@ -46,6 +46,7 @@
 - **Stops runaway agents** with a budget circuit breaker that pauses (`SIGSTOP`) or kills (`SIGTERM`) the process *before the next API call*.
 - **Manages your MCP servers** — discover, risk-score and toggle without editing JSON.
 - **Diagnoses waste** with ~25 one-click Terse Doctor scans.
+- **Renders it all as a live wallpaper** — every agent action assembled out of particles on your desktop, in real 3D you can drag. [See it ↓](#live-wallpaper)
 
 Everything runs locally. Your prompts and sessions never leave your machine.
 
@@ -133,6 +134,97 @@ const result = await ctx.chat([{ role: 'user', content: 'Explain recursion.' }])
 
 ---
 
+<div align="center">
+
+<a id="live-wallpaper"></a>
+
+## ✨ The live wallpaper — your agent log, as 3D particles
+
+**Terse's other half is a wallpaper.** Every action your agent takes is sampled into particles,
+assembled into readable text on your desktop, held for a beat, then scattered back into the field.
+Nothing here is a mockup — this is the shipping WebGL engine, recorded frame by frame.
+
+<img src="docs/wallpaper-3d.webp" width="860" alt="The Terse live wallpaper: a field of particles behind the desktop icons assembles the words 'Edit src/render…' out of the wallpaper's own pixels, then the camera turns and the flat field becomes a three-dimensional relief" />
+
+<sub><b>2D → 3D.</b> The camera starts dead-on, then orbits. Nothing about the field changed — you were looking straight down it.</sub>
+
+</div>
+
+<br>
+
+### It is made of your desktop, not drawn on top of it
+
+The engine takes your **actual desktop picture** and rebuilds it out of tens of thousands of particles: each one
+samples a pixel for its colour, and a depth map pushes it out of the plane. Head-on that reads as a
+flat wallpaper. The moment the camera moves, the relief that was always there becomes visible.
+
+<img src="docs/wallpaper-2d-3d.svg" width="900" alt="The same particle field twice: dead-on it is a flat sheet, orbited to az 0.44 and el 0.17 radians it is a three-dimensional relief. Only the camera moved." />
+
+Three layers, one renderer:
+
+| Layer | What it is | Where it lives |
+|---|---|---|
+| **SILK** | Your desktop picture as particles, pushed into relief by an edge/depth map | A plane, sampled per-pixel |
+| **PULSE** | The aurora shell — ribbons and depth sparks that carry the token traffic | `z ∈ −32…18`, real volume |
+| **GLYPH** | The text: your agent's current action, token counts, teammates' lines | Assembled, held, scattered |
+
+### The motion is your token traffic, not a screensaver
+
+There is no audio and no random number driving any of this. The choreography is fed from the same
+data the Dynamic Island shows:
+
+- **Aggregate burn rate → field activity.** Idle agents leave a calm field; a busy one turns it into weather.
+- **Every token event → a ripple**, pushed from the exact point the number landed.
+- **Each log line → a glyph formation.** `Edit src/renderer/wallpaper.js` becomes particles, holds ~1s, dissolves.
+- **Your teammates' lines too** — in a shared room, each person's messages arrive on the field under their own colour.
+
+### Drag it. It's a real camera.
+
+3D free view is a genuine orbit camera over both layers, not a parallax trick:
+
+| Gesture | What it does | Range |
+|---|---|---|
+| **Drag** | Orbit — azimuth and elevation | azimuth is unlimited; elevation clamped to ±66° |
+| **Scroll / pinch** | Dolly in and out | `0.55×` … `2.6×` |
+| **Double-click** | Back to dead-on, still in 3D | — |
+
+Your camera is saved to `~/.terse/wallpaper.json` as `view3d: {az, el, dist}` and restored on the
+next login. On the desktop itself, a button beside the Dynamic Island hands you the wallpaper for as
+long as you want it — press it again (or `Esc`) and the mouse goes straight back to your files. A
+native 75-second watchdog gives it back even if the page dies.
+
+### Eight Pro styles — and each one moves differently
+
+A style is not a colour swap. It changes the palette, the choreography of the surrounding field, and
+**how text gathers and scatters** — drawn from nine formation moves and ten field choreographies, dealt
+from a shuffled bag so no two lines arrive the same way.
+
+<img src="docs/wallpaper-styles.svg" width="900" alt="The eight Pro wallpaper styles — Cinematic, Aurora Silk, Starfall, Ink Wash, Neon Cyber, Gravity Vortex, Fireworks and Still Water — each forming its initial out of particles using its own entry motion" />
+
+<sub>Each card's letter is assembled with that style's own move: Starfall drops it in from above and keeps it falling, Ink Wash develops it in place, Neon Cyber snaps it on and shatters it, Still Water floats it up and evaporates it.</sub>
+
+### Point it at a project
+
+Give the wallpaper a project folder and it scans it into a **capsule** — title, cover, language
+breakdown, a few facts — and plays it as a ~20-second particle portrait: the cover image reassembled
+from particles, the title and stats forming out of the same field. Capsules are 8–25 KB of JSON, so
+publishing one to the plaza sends **parameters, not pixels** — everyone else's machine renders it
+from scratch, in their own style.
+
+<table>
+<tr><td><b>Free</b></td><td>The live field, your desktop picture, the log line, the stats. Dead-on camera.</td></tr>
+<tr><td><b>Pro</b></td><td>Eight styles + custom tuning, multi-slot glyphs, 3D free view, project capsules and the plaza.</td></tr>
+</table>
+
+<div align="center">
+
+**[⬇️ Get it for macOS](https://github.com/lucaszengool/Terse/releases/latest)** &nbsp;·&nbsp; **[🪟 Windows](https://www.terseai.org/for-windows)** &nbsp;·&nbsp; **[⭐ Star the repo](https://github.com/Terse-AI/terseai)**
+
+</div>
+
+
+---
+
 ## Capabilities
 
 | | Pillar | What it does | Learn more |
@@ -143,6 +235,7 @@ const result = await ctx.chat([{ role: 'user', content: 'Explain recursion.' }])
 | 🔌 | **MCP manager** | Discover every MCP server, risk-score each, toggle without editing JSON. | [MCP manager →](https://www.terseai.org/mcp-manager) |
 | 🩺 | **Doctor** | ~25 waste scans — cache thrash, duplicate calls, redundant reads, context burn. | [Reduce AI API costs →](https://www.terseai.org/reduce-ai-api-costs) |
 | 👥 | **Team** | Share live agent sessions and team analytics by developer, project, and tool. | [For teams →](https://www.terseai.org/teams) |
+| ✨ | **Live wallpaper** | Your agents' actions assembled out of particles on the desktop — a real 3D field you can drag. | [See it ↑](#live-wallpaper) |
 
 ---
 
@@ -197,6 +290,7 @@ App: free 30-day trial · $4.99/mo · [pricing](https://www.terseai.org/#pricing
 | MCP tool bloat silently taxes every call | Discover, risk-score & disable unused MCP servers |
 | Duplicate tool calls & re-reads go unnoticed | Doctor flags them with one-click fixes |
 | Your prompts leave your machine | 100% on-device — nothing leaves your Mac/PC |
+| You find out what an agent did by reading a log | Your desktop spells it out in particles as it happens |
 
 ---
 
@@ -272,6 +366,12 @@ The app has a free 30-day trial, then $4.99/month. The Chrome extension has a fr
 <summary><b>What is an MCP manager and why do I need one?</b></summary>
 
 Model Context Protocol (MCP) servers add tools to your agent — but bloated or unused tool catalogs quietly add hundreds of tokens to every call, and some servers carry security risk (remote transport, embedded credentials, code execution, unpinned supply chain). Terse discovers every MCP server across your Claude Code / Cursor / Windsurf configs, risk-scores each, and lets you enable or disable them without editing JSON.
+</details>
+
+<details>
+<summary><b>What is the live wallpaper, and does it slow my machine down?</b></summary>
+
+It is a WebGL particle field that sits at the desktop window level — behind your icons, click-through, on every Space — and renders what your agents are doing right now: each log line is sampled into particles, assembled into readable text, held for about a second, then scattered back into the field. It is built from your own desktop picture (each particle takes a pixel's colour; a depth map gives the plane its relief), so turning the camera reveals real depth rather than a parallax trick. It runs at a capped 30fps and a capped pixel ratio, and the density is a slider in the control panel — turn it down, or turn the whole thing off. [More ↑](#live-wallpaper)
 </details>
 
 <details>
