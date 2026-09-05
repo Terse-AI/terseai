@@ -64,22 +64,9 @@
 
 ### 它是怎么工作的
 
-```mermaid
-flowchart LR
-    U([你给 agent 发一条 prompt]) --> T{{Terse 在本机运行}}
-    T -->|压缩 40-70%| S([更短的 prompt])
-    T -->|监控| M([实时 token、花费、缓存、烧钱速率])
-    T -->|守门| B([预算断路器<br/>掐掉失控的 agent])
-    S --> API([AI API])
-    M --> API
-    B -.->|在下一次调用之前| API
-    API --> W([账单更低，结果一样])
-
-    classDef terse fill:#c6d82c,stroke:#c6d82c,color:#0a0a0a,font-weight:bold;
-    classDef node fill:#12140d,stroke:#3a3f26,color:#e8ece0;
-    class T terse;
-    class U,S,M,B,API,W node;
-```
+<div align="center">
+<img src="docs/how-it-works.zh.svg" width="900" alt="Terse 的工作方式：你给 agent 发一条 prompt，Terse 在本机分成三条道 —— 把 prompt 压缩 40–70%、实时监控 token 花费缓存与速率、由预算断路器守门；前两条走到 AI API，守门那条在下一次调用之前就被掐断，于是账单更低、结果一样" />
+</div>
 
 > **⭐ 如果 Terse 帮你省下了 token，点个 star —— 这是让更多开发者找到它最快的办法。**
 

@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 322" width="960" height="322" role="img" aria-label="Terse 的工作方式：你给 agent 发一条 prompt，Terse 在本机把它压缩 40–70%，实时监控 token、花费、缓存和烧钱速率，并由预算断路器在下一次 API 调用之前掐掉失控的 agent —— 于是账单更低，结果一样。">
+<title>它是怎么工作的</title>
+<defs>
+<marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+  <path d="M0,0 L7,3.5 L0,7 Z" fill="#3a3f26"/>
+</marker>
+<marker id="al" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+  <path d="M0,0 L7,3.5 L0,7 Z" fill="#c6d82c"/>
+</marker>
+<style>
+/* one 4.4s bar: a full-length prompt goes IN, a short one comes OUT. That swap
+   is the whole product, and it is the one thing the mermaid could not show. */
+@keyframes inbound  { 0%{opacity:0;transform:translateX(0)} 6%{opacity:1} 20%{opacity:1;transform:translateX(58px)} 25%,100%{opacity:0;transform:translateX(58px)} }
+@keyframes outA     { 0%,26%{opacity:0;transform:translateX(0)} 32%{opacity:1} 52%{opacity:1;transform:translateX(70px)} 58%,100%{opacity:0;transform:translateX(70px)} }
+@keyframes outB     { 0%,30%{opacity:0;transform:translateX(0)} 36%{opacity:1} 56%{opacity:1;transform:translateX(70px)} 62%,100%{opacity:0;transform:translateX(70px)} }
+/* the guard lane sets off and is stopped short of the API — it never arrives */
+@keyframes outC     { 0%,34%{opacity:0;transform:translateX(0)} 40%{opacity:1} 60%{opacity:1;transform:translateX(44px)} 66%{opacity:1;transform:translateX(44px)} 72%,100%{opacity:0;transform:translateX(44px)} }
+@keyframes barrier  { 0%,54%{opacity:.5} 60%,76%{opacity:1} 86%,100%{opacity:.5} }
+@keyframes hub      { 0%,100%{stroke:#3a3f26} 14%,26%{stroke:#c6d82c} }
+@keyframes lane0    { 0%,100%{stroke:#3a3f26} 30%,46%{stroke:#c6d82c} }
+@keyframes lane1    { 0%,100%{stroke:#3a3f26} 34%,50%{stroke:#58a6ff} }
+@keyframes lane2    { 0%,100%{stroke:#3a3f26} 38%,54%{stroke:#f85149} }
+@keyframes win      { 0%,72%{opacity:.35} 80%,100%{opacity:1} }
+@keyframes dash     { to{stroke-dashoffset:-14} }
+
+.node{fill:#12140d;stroke:#3a3f26;stroke-width:1.2}
+.lane{stroke-width:1.2;animation-duration:4.4s;animation-iteration-count:infinite;animation-timing-function:ease}
+.l0{animation-name:lane0}.l1{animation-name:lane1}.l2{animation-name:lane2}
+.hubbox{animation:hub 4.4s infinite ease}
+.wire{fill:none;stroke:#3a3f26;stroke-width:1.4}
+.cap{font:700 9.5px/1 'SF Mono','DejaVu Sans Mono','Fira Code',ui-monospace,monospace;letter-spacing:.14em}
+.body{font:500 11px/1 'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif}
+.nm{font:700 13px/1 'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;letter-spacing:.02em}
+.sub{font:400 10.5px/1 'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#7d8590}
+.tiny{font:700 8.5px/1 'SF Mono','DejaVu Sans Mono','Fira Code',ui-monospace,monospace;letter-spacing:.14em}
+.note{font:400 10.5px/1 'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#7d8590}
+.blocked{animation:barrier 4.4s infinite ease}
+.winner{animation:win 4.4s infinite ease}
+.crawl{stroke-dasharray:5 4;animation:dash 1s linear infinite}
+</style>
+</defs>
+
+<rect width="960" height="322" fill="#0d1117" rx="10"/>
+<text x="480" y="26" class="cap" fill="#7d8590" text-anchor="middle">它是怎么工作的</text>
+
+<!-- wires: hub → lanes → API -->
+<path d="M350,172 C400,172 400,100 450,100" class="wire" marker-end="url(#a)"/>
+<path d="M350,172 C400,172 400,172 450,172" class="wire" marker-end="url(#a)"/>
+<path d="M350,172 C400,172 400,244 450,244" class="wire" marker-end="url(#a)"/>
+<path d="M650,100 C692,100 692,172 734,172" class="wire" marker-end="url(#al)"/>
+<path d="M650,172 C692,172 692,172 734,172" class="wire" marker-end="url(#al)"/>
+<path d="M650,244 C692,244 692,172 734,172" class="wire crawl" stroke="#f85149" stroke-opacity=".55"/>
+<line x1="124" y1="172" x2="194" y2="172" class="wire" marker-end="url(#a)"/>
+<line x1="814" y1="172" x2="844" y2="172" class="wire" marker-end="url(#al)"/>
+
+<!-- the barrier the guard lane hits: it stops before the call, not after -->
+<g class="blocked">
+  <line x1="706" y1="178" x2="706" y2="250" stroke="#f85149" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="706" cy="250" r="8" fill="#0d1117" stroke="#f85149" stroke-width="1.6"/>
+  <path d="M702,246 l8,8 M710,246 l-8,8" stroke="#f85149" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="706" y="276" class="tiny" fill="#f85149" text-anchor="middle">在下一次调用之前</text>
+</g>
+
+<!-- nodes -->
+<rect x="14" y="144" width="110" height="56" rx="8" class="node"/>
+<text x="69" y="168" class="nm" fill="#e8ece0" text-anchor="middle">你</text>
+<text x="69" y="185" class="sub" text-anchor="middle">给 agent 发 prompt</text>
+
+<rect x="196" y="126" width="154" height="92" rx="10" class="node hubbox"/>
+<rect x="196" y="126" width="154" height="3" rx="1.5" fill="#c6d82c"/>
+<text x="273" y="166" class="nm" fill="#c6d82c" text-anchor="middle" font-size="16">TERSE</text>
+<text x="273" y="184" class="sub" text-anchor="middle">在本机运行</text>
+<text x="273" y="202" class="tiny" fill="#7d8590" text-anchor="middle">100% LOCAL</text>
+
+
+  <g>
+    <rect x="450" y="72" width="200" height="56" rx="8"
+          fill="#12140d" stroke="#3a3f26" class="lane l0"/>
+    <rect x="450" y="72" width="3" height="56" rx="1.5" fill="#c6d82c"/>
+    <text x="468" y="95" class="cap" fill="#c6d82c">压缩</text>
+    <text x="468" y="113" class="body" fill="#e8ece0">prompt 小 40–70%</text>
+  </g>
+  <g>
+    <rect x="450" y="144" width="200" height="56" rx="8"
+          fill="#12140d" stroke="#3a3f26" class="lane l1"/>
+    <rect x="450" y="144" width="3" height="56" rx="1.5" fill="#58a6ff"/>
+    <text x="468" y="167" class="cap" fill="#58a6ff">监控</text>
+    <text x="468" y="185" class="body" fill="#e8ece0">token · 花费 · 缓存 · 速率</text>
+  </g>
+  <g>
+    <rect x="450" y="216" width="200" height="56" rx="8"
+          fill="#12140d" stroke="#3a3f26" class="lane l2"/>
+    <rect x="450" y="216" width="3" height="56" rx="1.5" fill="#f85149"/>
+    <text x="468" y="239" class="cap" fill="#f85149">守门</text>
+    <text x="468" y="257" class="body" fill="#e8ece0">掐掉失控的 agent</text>
+  </g>
+
+<rect x="734" y="144" width="80" height="56" rx="8" class="node"/>
+<text x="774" y="176" class="nm" fill="#e8ece0" text-anchor="middle">AI API</text>
+
+<rect x="846" y="144" width="100" height="56" rx="8" fill="#161b0d" stroke="#c6d82c" stroke-width="1.4" class="winner"/>
+<text x="896" y="169" class="nm" fill="#c6d82c" text-anchor="middle" font-size="12">账单更低</text>
+<text x="896" y="185" class="sub" text-anchor="middle">结果一样</text>
+
+<!-- the travelling prompt: long in, short out -->
+<rect x="129" y="169" width="44" height="6" rx="3" fill="#e8ece0"
+      style="animation:inbound 4.4s infinite linear"/>
+<rect x="656" y="97" width="18" height="6" rx="3" fill="#c6d82c"
+      style="animation:outA 4.4s infinite linear;opacity:0"/>
+<circle cx="662" cy="172" r="3.2" fill="#58a6ff"
+        style="animation:outB 4.4s infinite linear;opacity:0"/>
+<rect x="656" y="241" width="18" height="6" rx="3" fill="#f85149"
+      style="animation:outC 4.4s infinite linear;opacity:0"/>
+
+<text x="480" y="306" class="note" text-anchor="middle">什么都不会离开你的机器 —— 压缩、监控和断路器全在本地运行</text>
+</svg>

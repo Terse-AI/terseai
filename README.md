@@ -62,22 +62,9 @@ This repository also holds the **[Terse SDK](#the-terse-sdk-mit)** (MIT) — the
 
 ### How it works
 
-```mermaid
-flowchart LR
-    U([You prompt an agent]) --> T{{Terse runs on-device}}
-    T -->|compress 40-70 percent| S([Smaller prompt])
-    T -->|monitor| M([Live tokens, cost, cache, burn])
-    T -->|guard| B([Budget breaker stops<br/>runaway agents])
-    S --> API([AI API])
-    M --> API
-    B -.->|before next call| API
-    API --> W([Lower bill, same result])
-
-    classDef terse fill:#c6d82c,stroke:#c6d82c,color:#0a0a0a,font-weight:bold;
-    classDef node fill:#12140d,stroke:#3a3f26,color:#e8ece0;
-    class T terse;
-    class U,S,M,B,API,W node;
-```
+<div align="center">
+<img src="docs/how-it-works.svg" width="900" alt="How Terse works: you prompt an agent; Terse runs on-device and splits into three lanes — compress the prompt 40 to 70 percent, monitor tokens cost cache and burn, and guard with a budget breaker; the first two reach the AI API and the guard lane is stopped before the next call, so the bill is lower and the result is the same" />
+</div>
 
 > **⭐ If Terse saves you tokens, drop a star — it's the fastest way to help other developers find it.**
 
