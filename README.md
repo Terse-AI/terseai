@@ -1,5 +1,11 @@
 <div align="center">
 
+<b>English</b> &nbsp;·&nbsp; <a href="README.zh-CN.md">简体中文</a>
+
+</div>
+
+<div align="center">
+
 <a href="https://www.terseai.org"><img src="docs/hero.svg" alt="Terse — the on-device AI agent butler for macOS and Windows: compress every prompt 40–70%, live-monitor Claude Code, Cursor, Codex and Copilot, and stop runaway agent spend with a budget circuit breaker" width="900" /></a>
 
 # Terse — the AI agent butler
