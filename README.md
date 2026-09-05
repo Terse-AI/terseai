@@ -23,7 +23,9 @@
 
 <br>
 
-<img src="docs/demo.gif" width="820" alt="Terse dynamic island — live token savings, cache efficiency and context tracking floating over your desktop" />
+<img src="docs/wallpaper-desktop.webp" width="820" alt="A macOS desktop whose wallpaper is a live particle field: it spells out what the agents are doing, the camera pushes in until you can see individual particles, then drags sideways and the flat field turns out to be three-dimensional" />
+
+<sub><b>That is the desktop, not a video player.</b> The wallpaper is rendering what your agents are doing right now — and it is a real 3D field you can drag. <a href="#live-wallpaper">How it works ↓</a></sub>
 
 </div>
 
@@ -113,22 +115,25 @@ const result = await ctx.chat([{ role: 'user', content: 'Explain recursion.' }])
 
 ## See it
 
+Every shot below is the app running on a real desktop — and the thing behind the windows is the live
+particle wallpaper, reacting to the same token traffic the windows are reporting.
+
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/dashboard.png" alt="Terse Overview dashboard — agent health, spend, burn rate and context" /></td>
-<td width="50%"><img src="docs/screenshots/stats.png" alt="Terse Stats — token receipts, cost and savings charts" /></td>
+<td width="50%"><img src="docs/screenshots/overview.jpg" alt="The Terse Overview window — saved today, spent today, burn rate and context fill — floating over a live particle wallpaper" /></td>
+<td width="50%"><img src="docs/screenshots/receipt.jpg" alt="A printed token receipt for the week: browser, agent, editor and manual sources itemised to a 6 dollar 37 total, over a live particle wallpaper" /></td>
 </tr>
 <tr>
 <td align="center"><b>Overview dashboard</b><br>Agent health, spend, burn rate &amp; context at a glance.</td>
-<td align="center"><b>Token receipts &amp; charts</b><br>See exactly where your tokens and dollars go.</td>
+<td align="center"><b>Token receipts &amp; charts</b><br>Itemised to the source. 282,877 tokens, $6.37, 21.6% cut.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/doctor.png" alt="Terse Doctor — 25 waste scans with one-click fixes" /></td>
-<td width="50%"><img src="docs/screenshots/team.png" alt="Terse Team — shared live agent sessions" /></td>
+<td width="50%"><img src="docs/screenshots/doctor-scan.jpg" alt="Terse Doctor mid-scan: a duplicated MCP server, nine agents holding 1.3 GB with two idle enough to sleep, each finding with a Fix button" /></td>
+<td width="50%"><img src="docs/screenshots/team-live.jpg" alt="The Terse Team window showing four agents live, 18,407 tokens saved together, and a handoff waiting to be accepted" /></td>
 </tr>
 <tr>
-<td align="center"><b>Doctor — ~25 waste scans</b><br>Context overflow, duplicate MCP servers, one-click fixes.</td>
-<td align="center"><b>Team collaboration</b><br>Share live agent sessions and hand off work.</td>
+<td align="center"><b>Doctor — ~25 waste scans</b><br>Duplicate MCP servers, idle agents holding context, one-click fixes.</td>
+<td align="center"><b>Team collaboration</b><br>Live sessions, shared savings, hand off work mid-task.</td>
 </tr>
 </table>
 
