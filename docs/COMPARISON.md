@@ -1,3 +1,9 @@
+<div align="center">
+
+<b>English</b> &nbsp;·&nbsp; <a href="COMPARISON.zh-CN.md">简体中文</a>
+
+</div>
+
 # Terse vs other Claude Code / Cursor cost tools
 
 Honest comparison, written by the maker of Terse. If something below is out of

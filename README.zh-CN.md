@@ -25,7 +25,7 @@
 [![License](https://img.shields.io/badge/SDK-MIT-c6d82c?style=flat-square&labelColor=0a0a0a)](LICENSE)
 [![Last commit](https://img.shields.io/github/last-commit/Terse-AI/terseai?style=flat-square&labelColor=0a0a0a&color=c6d82c)](https://github.com/Terse-AI/terseai/commits)
 
-[**🌐 terseai.org**](https://www.terseai.org) &nbsp;·&nbsp; [**⬇️ 下载**](https://github.com/lucaszengool/Terse/releases/latest) &nbsp;·&nbsp; [**📖 文档**](https://www.terseai.org/blog) &nbsp;·&nbsp; [**💸 Token 计算器**](https://www.terseai.org/token-calculator) &nbsp;·&nbsp; [**⚖️ 对比 ccusage 等**](docs/COMPARISON.md)
+[**🌐 terseai.org**](https://www.terseai.org) &nbsp;·&nbsp; [**⬇️ 下载**](https://github.com/lucaszengool/Terse/releases/latest) &nbsp;·&nbsp; [**📖 文档**](https://www.terseai.org/blog) &nbsp;·&nbsp; [**💸 Token 计算器**](https://www.terseai.org/token-calculator) &nbsp;·&nbsp; [**⚖️ 对比 ccusage 等**](docs/COMPARISON.zh-CN.md)
 
 <br>
 
@@ -269,7 +269,7 @@ prompt 优化器则对任何 AI 对话或 agent 都有效，包括不在这张�
 | MCP 管理 + 风险评分 | ✅ | ❌ | ❌ | ❌ |
 | 浪费诊断 | ✅ 约 25 项 | ❌ | ❌ | ❌ |
 
-**→ [完整对比，包括什么时候该用别的工具](docs/COMPARISON.md)** ——
+**→ [完整对比，包括什么时候该用别的工具](docs/COMPARISON.zh-CN.md)** ——
 如果你要的只是一个数字，ccusage 免费、好用，一条命令就能跑。
 
 ---
@@ -324,7 +324,7 @@ App：30 天免费试用 · $4.99/月 · [价格](https://www.terseai.org/#prici
 
 **按工具：** [Claude Code](https://www.terseai.org/for-claude-code) · [Cursor](https://www.terseai.org/for-cursor) · [ChatGPT](https://www.terseai.org/for-chatgpt) · [Copilot](https://www.terseai.org/for-github-copilot) · [Aider](https://www.terseai.org/for-aider) · [Cline](https://www.terseai.org/for-cline) · [Windsurf](https://www.terseai.org/for-windsurf) · [Codex](https://www.terseai.org/for-codex-cli)
 
-**本仓库内：** [FAQ](docs/FAQ.md) · [对比](docs/COMPARISON.md) · [SDK 参考](SDK.md) · [示例](examples) · [Benchmark](benchmark) · [llms.txt](llms.txt)
+**本仓库内：** [FAQ](docs/FAQ.zh-CN.md) · [对比](docs/COMPARISON.zh-CN.md) · [SDK 参考](SDK.md) · [示例](examples) · [Benchmark](benchmark) · [llms.txt](llms.txt)
 
 ---
 
@@ -335,7 +335,7 @@ App：30 天免费试用 · $4.99/月 · [价格](https://www.terseai.org/#prici
 <details>
 <summary><b>怎么降低 Claude Code 的花费？</b></summary>
 
-四个杠杆，大致按影响排序：少发 token（Terse 在本机把每条 prompt 压 40–70%）；别为缓存未命中付钱（Doctor 会标出缓存抖动 —— 把一次会话重排成稳定前缀不变，往往比压缩还管用）；砍掉 MCP 工具膨胀（没用上的 server 每次调用都会把自己的工具清单重发一遍）；最后用一道硬上限把下限兜住，因为大额账单绝大多数来自一次没人看着的死循环。[更多 →](docs/FAQ.md)
+四个杠杆，大致按影响排序：少发 token（Terse 在本机把每条 prompt 压 40–70%）；别为缓存未命中付钱（Doctor 会标出缓存抖动 —— 把一次会话重排成稳定前缀不变，往往比压缩还管用）；砍掉 MCP 工具膨胀（没用上的 server 每次调用都会把自己的工具清单重发一遍）；最后用一道硬上限把下限兜住，因为大额账单绝大多数来自一次没人看着的死循环。[更多 →](docs/FAQ.zh-CN.md)
 </details>
 
 <details>
@@ -392,7 +392,7 @@ MCP（Model Context Protocol）server 给你的 agent 增加工具 —— 但臃
 桌面 app 目前发行 macOS 和 Windows 两个版本。本仓库里的 Terse SDK 是纯 Node.js，任何能跑 Node 18+ 的地方都能跑，Linux 包括在内。
 </details>
 
-**→ [完整 FAQ](docs/FAQ.md)**
+**→ [完整 FAQ](docs/FAQ.zh-CN.md)**
 
 ---
 

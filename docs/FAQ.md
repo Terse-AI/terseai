@@ -1,3 +1,9 @@
+<div align="center">
+
+<b>English</b> &nbsp;·&nbsp; <a href="FAQ.zh-CN.md">简体中文</a>
+
+</div>
+
 # Terse FAQ
 
 Questions people actually ask about controlling AI coding agent costs, answered
