@@ -118,7 +118,8 @@ test('pricing is known for the models the README advertises', () => {
   assert.ok(haiku.total < sonnet.total, 'haiku must be cheaper than sonnet');
 
   // effectiveTokens is the cache-aware measure: cached reads count for a tenth
-  const cached = estimateCost(1_000_000, 0, 900_000, 'claude-sonnet-4-6');
+  // (inputTokens = non-cached input: 1M prompt of which 900k served from cache)
+  const cached = estimateCost(100_000, 0, 900_000, 'claude-sonnet-4-6');
   assert.ok(
     cached.effectiveTokens < sonnet.effectiveTokens,
     'a mostly-cached turn must cost fewer effective tokens'

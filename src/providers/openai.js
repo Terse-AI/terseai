@@ -56,7 +56,9 @@ export class OpenAIProvider {
       // OpenAI cached tokens available in some plans
       const cachedTokens = usage.prompt_tokens_details?.cached_tokens || 0;
 
-      const costInfo = estimateCost(inputTokens, outputTokens, cachedTokens, model);
+      // OpenAI: prompt_tokens includes cached_tokens; charge cached tokens at the
+      // cache rate only (estimateCost expects non-cached input tokens).
+      const costInfo = estimateCost(inputTokens - cachedTokens, outputTokens, cachedTokens, model);
 
       // Update budget if configured
       if (this.budget) {

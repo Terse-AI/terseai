@@ -78,13 +78,20 @@ export function countMessageTokens(messages) {
 /**
  * Estimate cost for a request.
  *
+ * `inputTokens` is the number of NON-cached input tokens. Callers must deduct
+ * cached tokens themselves: OpenAI's `prompt_tokens` already includes
+ * `prompt_tokens_details.cached_tokens`, while Anthropic's `input_tokens` and
+ * `cache_read_input_tokens` are independent buckets. Passing the raw
+ * `prompt_tokens` here would charge cached tokens twice (once at the input
+ * rate and once at the cache rate).
+ *
  * Uses the "Effective Token" (ET) formula from GitHub Copilot research:
  *   ET = modelCostFactor × (1.0 × input + 0.1 × cached + 4.0 × output)
  *
  * The 4× output multiplier reflects that output tokens cost ~4× more than
  * input tokens on most providers.
  *
- * @param {number} inputTokens
+ * @param {number} inputTokens   — non-cached input tokens
  * @param {number} outputTokens
  * @param {number} cachedTokens  — tokens served from prompt cache (cheaper)
  * @param {string} model         — model name key
@@ -102,7 +109,7 @@ export function estimateCost(inputTokens, outputTokens, cachedTokens = 0, model 
   // Uses output ratio of input/output pricing as the multiplier
   const outputMultiplier = outputPrice / inputPrice; // ~4-5× for most models
   const effectiveTokens = Math.round(
-    1.0 * (inputTokens - cachedTokens) +
+    1.0 * inputTokens +
     0.1 * cachedTokens +
     outputMultiplier * outputTokens
   );
