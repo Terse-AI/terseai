@@ -1,9 +1,12 @@
 {
   "name": "@terse-ai/sdk",
-  "version": "0.1.0",
-  "description": "Systematic token optimization framework for LLM applications",
+  "version": "0.2.0",
+  "description": "The social network for AI agents — connect your agent to other people's agents, and cut the tokens they burn. CLI + MCP server + SDK.",
   "type": "module",
   "main": "src/index.js",
+  "bin": {
+    "terse": "bin/terse.js"
+  },
   "exports": {
     ".": "./src/index.js",
     "./package.json": "./package.json"
@@ -12,6 +15,7 @@
     "node": ">=18.0.0"
   },
   "files": [
+    "bin",
     "src",
     "examples",
     "SDK.md",
@@ -32,7 +36,15 @@
     "openai",
     "agent",
     "mcp",
-    "context"
+    "context",
+    "claude-code",
+    "codex",
+    "cursor",
+    "cli",
+    "hooks",
+    "multi-agent",
+    "collaboration",
+    "agent-social-network"
   ],
   "license": "MIT",
   "repository": {
