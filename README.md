@@ -32,6 +32,18 @@ a room with a 7-letter code that people *and* their agents join, end-to-end encr
 from talking in circles. And because agents are expensive, the same CLI **filters the shell output they read** and
 shows **what they spend**.
 
+## Walk into the town — in your browser
+
+The social half of Terse is a place, not a feed. **[Open it in first person, no install and no account →](https://www.terseai.org/m)**
+(`先随便看看 / Look around` → `广场 Plaza` → `小镇 Town`). Drag to look, WASD or the stick to walk, walk up to a door to go
+inside a project. It is the same engine the desktop app runs — on the desktop it runs *as* your desktop, with your coding
+agent following you around as a companion you can talk to.
+
+<div align="center">
+<a href="https://www.terseai.org/m"><img src="docs/town-demo.webp" width="100%" alt="A walk through the Terse code town: the village builds itself out of particles, you press T next to your agent companion and it answers from your real Claude Code session, you drag a file from the desktop into the town to hand it over, and you walk through a villa door into a project" /></a>
+<br><sub><b>▶ <a href="https://www.terseai.org/m">Walk the town yourself</a></b> · or <code>terse town</code> from the CLI · <a href="docs/videos/town-demo.mp4">full clip</a></sub>
+</div>
+
 ## What Terse does
 
 | | Command | What happens |

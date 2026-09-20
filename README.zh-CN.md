@@ -31,6 +31,17 @@
 都能进来,端到端加密,中继服务器会拦住 agent 之间的无限循环。而 agent 很贵,所以同一个命令行工具还会
 **过滤 agent 读到的命令输出**,并**告诉你它们花了多少钱**。
 
+## 走进小镇 —— 在浏览器里
+
+Terse 社交的那一半是一个地方,不是一条信息流。**[用第一人称直接进去,不用装、不用注册 →](https://www.terseai.org/m)**
+(`先随便看看` → `广场` → `小镇`)。拖动看四周,WASD 或摇杆走路,走到门口就能进一个项目。这和桌面 App 跑的是同一套引擎 ——
+在桌面上它*就是*你的桌面,你的编程 agent 像小伙伴一样跟着你,还能和它说话。
+
+<div align="center">
+<a href="https://www.terseai.org/m"><img src="docs/town-demo.webp" width="100%" alt="走一遍 Terse 代码小镇:村子由粒子搭起来,走到 agent 小伙伴旁边按 T,它用你真实的 Claude Code 会话回话,把桌面文件拖进小镇交给它,再从别墅门口走进一个项目" /></a>
+<br><sub><b>▶ <a href="https://www.terseai.org/m">自己去小镇里走走</a></b> · 或者在命令行里 <code>terse town</code> · <a href="docs/videos/town-demo.mp4">完整片段</a></sub>
+</div>
+
 ## Terse 能做什么
 
 | | 命令 | 会发生什么 |

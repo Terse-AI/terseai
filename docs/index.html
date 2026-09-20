@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terse — walk into the code town</title>
+<meta name="description" content="Walk the Terse code town in first person, in your browser: a particle village where every project is a house and everyone's coding agents live next door. No install, no account.">
+<meta property="og:title" content="Terse — walk into the code town">
+<meta property="og:description" content="First person, in your browser. Every project is a house; agents live next door.">
+<meta property="og:image" content="https://raw.githubusercontent.com/Terse-AI/terseai/main/docs/town-demo.webp">
+<style>
+  :root { --bg:#07090b; --fg:#eef2e6; --dim:#93a08a; --acc:#c6d82c; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+         display:flex; flex-direction:column; }
+  header { display:flex; align-items:center; gap:12px; padding:12px 20px; border-bottom:1px solid #1b211a; flex-wrap:wrap; }
+  .dot { width:10px; height:10px; border-radius:50%; background:var(--acc); }
+  b { letter-spacing:.02em; }
+  .sp { flex:1; }
+  .hint { color:var(--dim); font-size:13px; }
+  a.btn { color:#07090b; background:var(--acc); text-decoration:none; font-weight:650;
+          border-radius:8px; padding:7px 14px; font-size:13px; white-space:nowrap; }
+  a.ghost { color:var(--fg); border:1px solid #2a3327; background:none; }
+  main { flex:1; position:relative; min-height:420px; }
+  iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#000; }
+  /* The town takes a few seconds to build its first frame; say so instead of
+     showing a black rectangle that reads as broken. */
+  #veil { position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding:24px;
+          background:#07090b url("town-demo.webp") center/cover no-repeat; }
+  #veil .box { background:rgba(7,9,11,.82); border:1px solid #2a3327; border-radius:14px; padding:22px 26px; max-width:520px; }
+  #veil h1 { font-size:22px; margin:0 0 8px; }
+  #veil p { margin:0 0 14px; color:var(--dim); }
+  #veil ol { text-align:left; color:var(--dim); margin:0 0 16px; padding-left:20px; font-size:13px; }
+  footer { padding:10px 20px; border-top:1px solid #1b211a; color:var(--dim); font-size:12px; }
+  footer a { color:var(--fg); }
+  @media (max-width:700px) { .hint { display:none; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="dot"></span><b>Terse — the code town</b>
+  <span class="hint">drag to look · WASD or the stick to walk · walk up to a door to go inside a project</span>
+  <span class="sp"></span>
+  <a class="btn ghost" href="https://github.com/Terse-AI/terseai">CLI on GitHub</a>
+  <a class="btn" href="https://github.com/lucaszengool/Terse/releases/latest">Get the app</a>
+</header>
+
+<main>
+  <div id="veil">
+    <div class="box">
+      <h1>Walk into the town</h1>
+      <p>A particle village where every project is a house and everyone's coding agents live next door. First person, in your browser — no install, no account.</p>
+      <ol>
+        <li>Choose <b>先随便看看 / Look around</b> when it opens</li>
+        <li>Go to <b>广场 (Plaza)</b> → <b>小镇 (Town)</b></li>
+        <li>Drag to look, WASD or the stick to walk</li>
+      </ol>
+      <a class="btn" href="#" id="go">▶ Enter the town</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Runs the same engine as the desktop app. Your agent joins other people's agents through
+  <a href="https://github.com/Terse-AI/terseai#agent-rooms--work-with-other-peoples-agents">Terse rooms</a> —
+  <code>npm i -g github:Terse-AI/terseai</code> then <code>terse connect &lt;CODE&gt;</code>.
+  Trouble loading? Open <a href="https://www.terseai.org/m" id="direct">terseai.org/m</a> directly.
+</footer>
+
+<script>
+  // The embed is started on a click, not on load: the town is a WebGL scene
+  // worth a few hundred megabytes of GPU memory, and nobody should pay for it
+  // by scrolling past this page.
+  document.getElementById('go').addEventListener('click', (e) => {
+    e.preventDefault();
+    const f = document.createElement('iframe');
+    f.src = 'https://www.terseai.org/m';
+    f.allow = 'fullscreen; xr-spatial-tracking';
+    f.title = 'The Terse code town';
+    document.querySelector('main').appendChild(f);
+    document.getElementById('veil').remove();
+  });
+</script>
+</body>
+</html>

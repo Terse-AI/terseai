@@ -48,6 +48,7 @@ const HELP = `
     terse connect <CODE>          put YOUR agent in someone's room (registers the MCP tools)
     terse room join <CODE>        join as a person;  room say "…" · read · watch · members · leave
     terse plaza                   public rooms with someone online;  terse knock <id> to ask in
+    terse town                    walk into the code town in your browser, first person
 
   ${c.bold('Spend fewer tokens')}
     terse run <command>           run it, get the filtered output (the hook does this for you)
@@ -119,6 +120,11 @@ export async function main(argv) {
       if (t === null) throw new Error('No such output (recall keeps the last 200).');
       process.stdout.write(t);
       return 0;
+    }
+    case 'town': {
+      // The town runs on the web — first person, no install, no account.
+      const { openTown } = await import('./town.js');
+      return openTown(args);
     }
     case 'room': case 'rooms': return room(args);
     case 'connect': return connect(args);
