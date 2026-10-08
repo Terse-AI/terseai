@@ -23,6 +23,18 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm test
 
+  # `terse run` shells out on every platform; until now only ubuntu was
+  # exercised, so a Windows-only argument-passing bug shipped unseen.
+  test-windows:
+    name: test (windows-latest, node 22)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test
+
   benchmark:
     name: compression benchmark
     runs-on: ubuntu-latest
