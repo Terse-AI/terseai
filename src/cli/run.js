@@ -16,9 +16,14 @@ import { appendGain, saveRecall, config } from './store.js';
    Windows, and the hook quotes for it), cmd.exe only when there is none. */
 function shell() {
   const sh = process.env.TERSE_SHELL || process.env.SHELL;
-  if (sh) return { file: sh, args: (c) => ['-c', c] };
-  if (process.platform === 'win32') return { file: process.env.ComSpec || 'cmd.exe', args: (c) => ['/d', '/s', '/c', c] };
-  return { file: '/bin/sh', args: (c) => ['-c', c] };
+  // `verbatim` is true only where the shell expects ONE raw command line
+  // (cmd.exe /d /s /c). A POSIX shell takes the command as a single argv
+  // entry, so Node has to quote it: passing `-c git status` through
+  // untouched makes bash read `git` as the script and `status` as $0, and
+  // the arguments are silently dropped.
+  if (sh) return { file: sh, args: (c) => ['-c', c], verbatim: false };
+  if (process.platform === 'win32') return { file: process.env.ComSpec || 'cmd.exe', args: (c) => ['/d', '/s', '/c', c], verbatim: true };
+  return { file: '/bin/sh', args: (c) => ['-c', c], verbatim: false };
 }
 
 export function runCommand(cmd, { raw = process.env.TERSE_RAW === '1' } = {}) {
@@ -28,7 +33,7 @@ export function runCommand(cmd, { raw = process.env.TERSE_RAW === '1' } = {}) {
     stdio: ['inherit', 'pipe', 'pipe'],
     maxBuffer: 256 * 1024 * 1024,
     env: { ...process.env, TERSE_WRAPPED: '1' },
-    windowsVerbatimArguments: process.platform === 'win32',
+    windowsVerbatimArguments: sh.verbatim,
   });
   const ms = Date.now() - t0;
   if (r.error) {
