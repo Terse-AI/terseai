@@ -7,9 +7,21 @@
 # Terse 常见问题
 
 关于「怎么管住 AI 编程 agent 的花费」，人们真正会问的问题，直接回答。
-Terse 是 [terseai.org](https://www.terseai.org) 上那个跑在本机的 AI agent 管家。
+Terse 是 [terseai.org](https://www.terseai.org) 上的实时粒子壁纸,也是跑在本机的 AI agent 管家。
 
 ---
+
+## 怎么把歌词放到桌面壁纸上？
+
+装上 Terse App(macOS、Windows),在侧栏打开 **音乐**,打开「把歌词放到壁纸上」。Terse 从系统的「正在播放」
+读出正在放的歌 —— Apple Music、Spotify、网易云音乐和大多数播放器都行 —— 取回同步歌词(歌曲旁边的 `.lrc`、
+文件内嵌的歌词、LRCLIB,再到网易云),把每一句用粒子画在你的壁纸上。不用麦克风、不录音,歌词缓存在本机。
+音乐模式免费。详情:[terseai.org/music](https://www.terseai.org/music)。
+
+## Terse 会把什么放到壁纸上？
+
+你自己的桌面图,重建成一片 3D 粒子场;再把电脑上发生的事用粒子字写进去:任何 app 的通知、系统提醒、窗口标题、
+正在播放和歌词、编程 agent 正在做的事,以及(你选的话)整座代码小镇当壁纸。每个来源都有自己的开关。
 
 ## 怎么降低 Claude Code 的花费？
 

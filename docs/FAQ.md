@@ -7,9 +7,26 @@
 # Terse FAQ
 
 Questions people actually ask about controlling AI coding agent costs, answered
-directly. Terse is the on-device AI agent butler at [terseai.org](https://www.terseai.org).
+directly. Terse is the live particle wallpaper and on-device AI agent butler at [terseai.org](https://www.terseai.org).
 
 ---
+
+## How do I put song lyrics on my desktop wallpaper?
+
+Install the Terse app (macOS, Windows), open **Music** in the sidebar and switch on
+"Put lyrics on the wallpaper". Terse reads what is playing from the system's Now
+Playing — Apple Music, Spotify, NetEase Cloud Music and most other players — fetches
+synced lyrics (a `.lrc` next to the song, lyrics embedded in the file, LRCLIB, then
+NetEase) and draws each line out of particles on your wallpaper. No microphone and no
+audio recording; lyrics are cached locally. Music mode is free. Details:
+[terseai.org/music](https://www.terseai.org/music).
+
+## What does Terse put on the wallpaper?
+
+Your own desktop picture, rebuilt as a 3D particle field, and whatever is happening
+on the machine written into it as particle text: notifications from any app, system
+alerts, window titles, Now Playing and lyrics, what your coding agents are doing, and
+— if you choose it — Code Town as the whole wallpaper. Each source has its own switch.
 
 ## How do I reduce Claude Code costs?
 
